@@ -1,0 +1,207 @@
+\documentclass[ngerman]{dis-template-add}
+
+
+\renewcommand{\Aufgabenblatt}{1}
+\renewcommand{\Ausgabedatum}{Date}
+\renewcommand{\Abgabedatum}{Date}
+\renewcommand{\Gruppe}{Simon Weidmann, Aram Yesildeniz}
+\renewcommand{\STiNEGruppe}{14}
+
+
+\begin{document}
+
+
+\section{Beispiel für ER-Diagramm}
+
+
+\begin{center}
+\begin{tikzpicture}
+\node[entity] (e1) {E1};
+\node[attribut] (e1-a1) [above left =5mm and 4mm of e1.north] {\underline{A1}} edge (e1);
+\node[attribut] (e1-a2)  [above right=5mm and 4mm of e1.north] {A2} edge (e1);
+\node[multivalentattribut] (e1-a3)  [right=5mm of e1] {A3} edge (e1);
+
+\node[is-a] (is-a) [below =1cm of e1.south]              {is-a} edge [erbt] (e1);
+% \node[is-a-blue] statt \node[is-a] für ein blau eingefärbtes is-a-Element
+% Bsp: \node[is-a-blue] (is-a) [below =1cm of e1.south] {is-a} edge [erbt] (e1);
+
+\node[entity] (e2) [below left =1cm and 1mm of is-a.south] {E1} edge [erbt] (is-a);
+\node[entity] (e3) [below right=1cm and 1mm of is-a.south] {E3} edge [erbt] (is-a);
+\node[entity] (e4) [right =7cm of e3] {E4};
+
+\node[weakentity] (e5) [below =3cm of e3] {E5};
+\node[attribut] (e5-a1)  [right=5mm of e5] {\dashuline{A1}} edge (e5);
+
+\node[relationship] (r1) [right=2cm of e3] {R1};
+\path (r1) edge node[at end,anchor=north west] {$[0;2]$} (e3);
+\path (r1) edge node[at end,anchor=north east] {$[7;9]$} (e4);
+
+
+\node[weakrelationship] (r2) [below=1cm of e3] {R2};
+\path (r2) edge node[at end,anchor=north west] {$1$} (e3);
+\draw[double distance=2pt] (r2) -- node[at end,anchor=south east] {$8$} (e5);
+
+% reflexive relationship types
+\node[relationship] (r4) [below=2cm of e4] {R4};
+\path (r4.west) edge node[anchor=north east] {$[0;*]$} ([shift={(1.5em,0em)}] e4.south west);
+\path (r4.east) edge node[anchor=north west] {$[1;1]$} ([shift={(-1.5em,0em)}] e4.south east);
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+\section{Beispiel für relationales Datenbankschema}
+
+\begin{RMSchma}
+Person(\soliduline{PID}, Name, Vorname, \dashuline{(HaustierName, HaustierRasse) $\rightarrow$ (Haustier.Name, Haustier.Rasse)})
+
+Haustier(\soliduline{Name, Rasse}, \dashuline{Herrchen $\rightarrow$ Person.PID})
+\end{RMSchma}
+
+
+
+
+\section{Beispiel für Ausdruck der Relationenalgebra}
+
+\begin{align*}
+ &\umbenennung{Rasse}{Sorte}(\projektion{Rasse, Geschlecht}((Wolf\verbund{Wolf.WID=Haustier.HID} (\selektion{Name=\wert{Hasso}}Haustiere)) \natverbund Person))
+\\  &=\{ \wert{Steppenwolf}, \wert{m} \}
+\end{align*}
+
+
+
+
+\newpage
+\section{Beispiel für SQL-Anfrage}
+
+\begin{verbatim}
+SELECT 
+  h.Name,
+  h.Rasse
+FROM 
+  Haustier h,
+  Person p
+WHERE
+  h.Herrchen = p.PID AND
+  p.Vorname LIKE "P%"
+\end{verbatim}
+
+
+
+
+
+
+
+
+\section{Beispiel für Operatorbaum}
+
+\begin{tikzpicture}
+\node (Haustier) {Haustier};
+\node (Wolf) [left=25mm of Haustier] {Wolf};
+\node (join1) [above=20mm of $(Haustier)!.5!(Wolf)$] {$\verbund{Wolf.WID=Haustier.HID}$};
+\node (selektion1) [above=of join1] {$\selektion{Name=\wert{Hasso}}$};
+\node (projektion) [above=of selektion1] {$\projektion{Rasse}$};
+\node (final) [above=of projektion] {};
+
+\path (Haustier) edge node[smallr,near start,above right] {200 Tupel\\4 Attribute} (join1);
+\path (Wolf) edge node[smalll,near start,above left] {1000 Tupel\\6 Attribute} (join1);
+\path (join1) edge node[smallr,near start,above left] {?? Tupel\\?? Attribute} (selektion1);
+\path (selektion1) edge node[smallr,midway,left] {$??\cdot\frac{??}{??}=??$ Tupel\\?? Attribute} (projektion);
+\path (projektion) edge node[smallr,midway,left] {$??$ Tupel\\1 Attribut} (final);
+\end{tikzpicture}
+
+
+
+
+
+
+
+\section{Beispiel fürr Tabelle mit Sperranforderungen}
+
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|p{3cm}|}
+\hline
+Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
+\hline
+\hline
+0 &  &  &  & NL & NL & NL & \\
+\hline
+1 & lock(x,X) &  &  & X\ts{1} & NL & NL & \\
+\hline
+2 & write(x) & lock(y,R) &  & X\ts{1} & R\ts{2} & NL & \\
+\hline
+3 &  &  &  &  &  &  & \\
+\hline
+4 &  &  &  &  &  &  & \\
+\hline
+5 &  &  &  &  &  &  & \\
+\hline
+\end{tabular}
+
+
+
+\section{Beispiel für B-  und B*-Bäumen}
+
+Löschen Sie aus dem unten abgebildeten  \textbf{B*-Baum} der Klasse $\tau(1,2,h)$
+die Datensätze mit den Schlüsselwerten \textbf{40}, \textbf{43}, \textbf{38}, \textbf{32} und \textbf{90} (in dieser Reihenfolge).
+Geben Sie jeweils kurz an, welche konkrete Maßnahme Sie durchgeführt haben (Mischen, Ausgleichen, einfaches Löschen) und zeichnen Sie den Baum nach jedem Mischen und Ausgleichen neu.
+Für Ausgleichs- und Mischoperationen sollen nur direkt benachbarte Geschwisterknoten (bevorzugt der rechte) herangezogen werden.
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
+\tikzstyle{every node}=[bplus]
+\tikzstyle{level 1}=[sibling distance=30mm]
+\tikzstyle{level 2}=[sibling distance=15mm]
+
+\node {12 \nodepart{two} 47  } [->]
+ child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\; } }
+ child {node {32 \nodepart{two} 38 \nodepart{three} 40 \nodepart{four} 43}}
+  child {node {86 \nodepart{two} 88 \nodepart{three} 90 \nodepart{four} \;\;\;}}
+;\end{tikzpicture}
+\end{center}
+
+
+40 und 43, Einfaches Löschen\\
+38, Ausgleichen
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
+\tikzstyle{every node}=[bplus]
+\tikzstyle{level 1}=[sibling distance=30mm]
+\tikzstyle{level 2}=[sibling distance=15mm]
+
+\node {12 \nodepart{two} 86 } [->]
+ child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
+ child {node {32 \nodepart{two} 86 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
+  child {node {88 \nodepart{two} 90 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
+;\end{tikzpicture}
+\end{center}
+
+32, Mischen
+
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
+\tikzstyle{every node}=[bplus]
+\tikzstyle{level 1}=[sibling distance=30mm]
+\tikzstyle{level 2}=[sibling distance=15mm]
+
+\node {12} [->]
+ child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
+ child {node {86 \nodepart{two} 88 \nodepart{three} 90 \nodepart{four} \;\;\;}}
+;\end{tikzpicture}
+\end{center}
+
+90, Einfaches Löschen
+
+
+
+
+
+
+
+\end{document}
