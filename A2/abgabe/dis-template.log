@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  29 APR 2020 15:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  1 MAY 2020 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -801,12 +801,12 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+lasy on input line 20.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 23.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-<dbis.pdf, id=9, 813.0965pt x 813.0965pt> <use dbis.pdf>
+<dbis.pdf, id=4, 813.0965pt x 813.0965pt> <use dbis.pdf>
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 
 
@@ -816,7 +816,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 77.
+Package pdftex.def Info: dbis.pdf used on input line 104.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -828,7 +828,8 @@ Overfull \vbox (77.26578pt too high) has occurred while \output is active []
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
  <./dbis.pdf>]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 80.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 107.
+
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -842,7 +843,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 151.
+Package pdftex.def Info: dbis.pdf used on input line 178.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -861,7 +862,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 207.
+Package pdftex.def Info: dbis.pdf used on input line 234.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -872,11 +873,11 @@ Overfull \vbox (77.26578pt too high) has occurred while \output is active []
 
 [3] (./dis-template.aux) ) 
 Here is how much of TeX's memory you used:
- 17934 strings out of 493089
- 368439 string characters out of 6134843
- 510966 words of memory out of 5000000
- 21029 multiletter control sequences out of 15000+600000
- 25031 words of font info for 70 fonts, out of 8000000 for 9000
+ 17763 strings out of 493089
+ 365372 string characters out of 6134843
+ 508634 words of memory out of 5000000
+ 20865 multiletter control sequences out of 15000+600000
+ 22599 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,23n,81p,447b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/c
@@ -889,18 +890,17 @@ nts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/
-sfsi1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sf
-ss0800.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfss
-0900.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfss10
-00.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfss1095
-.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1000.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on dis-template.pdf (3 pages, 225173 bytes).
+sfss0800.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sf
+ss1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfss
+1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx10
+00.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1095
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1200.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on dis-template.pdf (3 pages, 221036 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 100 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
