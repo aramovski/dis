@@ -1,0 +1,212 @@
+- Script für Erstellung von Tabellen schreiben
+- Tabellen mit Daten füllen (mindestens estate agent)
+
+Programm:
+- Beans für neue Tabellen erstellen
+
+- Management Mode für Estate Agents:
+- Zugang mit hart kodiertem Passwort
+- Estate Agent erstellen
+- Estate Agents verändern
+- Estate Agents löschen
+
+- Management Mode für Estates:
+- Login mit Estate Agents
+- Estate erstellen
+- Estates löschen
+- Estates updaten
+
+- Contract Management:
+- Personen einfügen
+- Contracts erstellen
+- Überblick über alle Contracts
+
+
+
+
+
+
+SQL commands:
+-------------
+
+
+DB erstellen:
+
+
+CREATE DATABASE dis
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+
+
+
+
+Tabellen erstellen:
+
+
+
+CREATE TABLE public.estate_agent
+(
+    agent_login text,
+    agent_name text,
+    agent_address text,
+    agent_password text,
+    PRIMARY KEY (agent_login)
+);
+
+ALTER TABLE public.estate_agent
+    OWNER to postgres;
+
+
+
+
+CREATE TABLE public.estate
+(
+    estate_id serial,
+    city text,
+    postcal_code integer,
+    street text,
+    street_number text,
+    square_area integer,
+    manager text,
+    PRIMARY KEY (estate_id),
+    CONSTRAINT manager FOREIGN KEY (manager)
+        REFERENCES public.estate_agent (agent_login) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+ALTER TABLE public.estate
+    OWNER to postgres;
+
+
+
+
+CREATE TABLE public.apartment
+(
+    floor integer,
+    rent text,
+    rooms text,
+    balcony boolean,
+    kitchen boolean,
+    CONSTRAINT apartment_pkey PRIMARY KEY (estate_id),
+    CONSTRAINT manager FOREIGN KEY (manager)
+        REFERENCES public.estate_agent (agent_login) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALIDapar
+)
+    INHERITS (public.estate);
+
+ALTER TABLE public.apartment
+    OWNER to postgres;
+
+
+
+CREATE TABLE public.house
+(
+    floors integer,
+    price text,
+    garden boolean,
+    CONSTRAINT house_pkey PRIMARY KEY (estate_id),
+    CONSTRAINT manager FOREIGN KEY (manager)
+        REFERENCES public.estate_agent (agent_login) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+    INHERITS (public.estate)
+TABLESPACE pg_default;
+
+ALTER TABLE public.house
+    OWNER to postgres;
+
+
+
+
+
+CREATE TABLE public.person
+(
+    id serial,
+    first_name text,
+    last_name text,
+    address text,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE public.person
+    OWNER to postgres;
+
+
+
+CREATE TABLE public.contract
+(
+    contract_number serial,
+    contract_date date,
+    place text,
+    PRIMARY KEY (contract_number)
+);
+
+ALTER TABLE public.contract
+    OWNER to postgres;
+
+
+
+
+
+
+CREATE TABLE public.tenancy_contract
+(
+    start_date date,
+    duration text,
+    additional_costs text,
+    person_id integer,
+    apartment_id integer,
+    CONSTRAINT tenancy_contract_pkey PRIMARY KEY (contract_number),
+    CONSTRAINT person_id FOREIGN KEY (person_id)
+        REFERENCES public.person (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT apartment_id FOREIGN KEY (apartment_id)
+        REFERENCES public.apartment (estate_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+    INHERITS (public.contract);
+
+ALTER TABLE public.tenancy_contract
+    OWNER to postgres;
+
+
+
+
+CREATE TABLE public.purchase_contract
+(
+    installment_amount text,
+    intrest_rate text,
+    person_id integer,
+    house_id integer,
+    CONSTRAINT purchase_contract_pkey PRIMARY KEY (contract_number),
+    CONSTRAINT person_id FOREIGN KEY (person_id)
+        REFERENCES public.person (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT house_id FOREIGN KEY (house_id)
+        REFERENCES public.house (estate_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+    INHERITS (public.contract);
+
+ALTER TABLE public.purchase_contract
+    OWNER to postgres;
+
+
+
+

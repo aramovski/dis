@@ -65,7 +65,7 @@ public class Menu {
 				System.out.println("["+(i+1)+"] "+labels.get(i));
 			}
 			
-			System.out.print("-- ");
+			System.out.print("Eingabe: ");
 			try {
 				selection = Integer.parseInt(stdin.readLine());
 			} catch (NumberFormatException e) {

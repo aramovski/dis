@@ -55,7 +55,7 @@ public class DbConnectionManager {
 	}
 
 	/**
-	 * Liefert eine Verbindung zur Datenbank zurC<ck
+	 * Liefert eine Verbindung zur Datenbank zurück
 	 * 
 	 * @return Connection
 	 */

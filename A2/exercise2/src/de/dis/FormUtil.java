@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 public class FormUtil {
 	/**
 	 * Liest einen String vom standard input ein
+	 * 
 	 * @param label Zeile, die vor der Eingabe gezeigt wird
 	 * @return eingelesene Zeile
 	 */
@@ -18,17 +19,18 @@ public class FormUtil {
 		BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
-			System.out.print(label+": ");
+			System.out.print(label + ": ");
 			ret = stdin.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return ret;
 	}
-	
+
 	/**
 	 * Liest einen Integer vom standard input ein
+	 * 
 	 * @param label Zeile, die vor der Eingabe gezeigt wird
 	 * @return eingelesener Integer
 	 */
@@ -36,9 +38,9 @@ public class FormUtil {
 		int ret = 0;
 		boolean finished = false;
 
-		while(!finished) {
+		while (!finished) {
 			String line = readString(label);
-			
+
 			try {
 				ret = Integer.parseInt(line);
 				finished = true;
@@ -46,7 +48,7 @@ public class FormUtil {
 				System.err.println("Ungültige Eingabe: Bitte geben Sie eine Zahl an!");
 			}
 		}
-		
+
 		return ret;
 	}
 }
