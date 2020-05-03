@@ -62,8 +62,6 @@ ALTER TABLE public.estate_agent
     OWNER to postgres;
 
 
-
-
 CREATE TABLE public.estate
 (
     estate_id serial,
@@ -83,8 +81,6 @@ CREATE TABLE public.estate
 
 ALTER TABLE public.estate
     OWNER to postgres;
-
-
 
 
 CREATE TABLE public.apartment
@@ -126,9 +122,6 @@ ALTER TABLE public.house
     OWNER to postgres;
 
 
-
-
-
 CREATE TABLE public.person
 (
     id serial,
@@ -142,7 +135,6 @@ ALTER TABLE public.person
     OWNER to postgres;
 
 
-
 CREATE TABLE public.contract
 (
     contract_number serial,
@@ -153,10 +145,6 @@ CREATE TABLE public.contract
 
 ALTER TABLE public.contract
     OWNER to postgres;
-
-
-
-
 
 
 CREATE TABLE public.tenancy_contract
@@ -184,8 +172,6 @@ ALTER TABLE public.tenancy_contract
     OWNER to postgres;
 
 
-
-
 CREATE TABLE public.purchase_contract
 (
     installment_amount text,
@@ -208,7 +194,3 @@ CREATE TABLE public.purchase_contract
 
 ALTER TABLE public.purchase_contract
     OWNER to postgres;
-
-
-
-

@@ -156,7 +156,7 @@ CREATE TABLE public.apartment
         REFERENCES public.estate_agent (agent_login) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-        NOT VALIDapar
+        NOT VALID
 )
     INHERITS (public.estate);
 
