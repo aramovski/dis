@@ -10,10 +10,8 @@ public class EstateAgentManager {
 		agent.setLogin(FormUtil.readString("Login"));
 		agent.setName(FormUtil.readString("Name"));
 		agent.setAddress(FormUtil.readString("Address"));
-		agent.setPassword(FormUtil.readString("Password"));
+		agent.setPassword(FormUtil.readString("Password"));		
 		agent.save();
-
-		System.out.println("Agent with Login [" + agent.getLogin() + "] created.");
 	}
 	
 	public static void updateEstateAgent() {

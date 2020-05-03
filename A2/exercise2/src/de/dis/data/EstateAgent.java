@@ -55,6 +55,28 @@ public class EstateAgent {
 	}
 
 	public void save() {
+		Connection con = DbConnectionManager.getInstance().getConnection();
+
+		try {
+			
+			// Check if login name already exists 
+			if (read(getLogin()) != null) {
+				System.out.println("\nLogin name [" + getLogin() + "] already exists. Agent not saved.\n");
+				return;
+			}
+			
+			String insertSQL = "INSERT INTO estate_agent(agent_login, agent_name, agent_address, agent_password) VALUES (?, ?, ?, ?)";
+			PreparedStatement pstmt = con.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, getLogin());
+			pstmt.setString(2, getName());
+			pstmt.setString(3, getAddress());
+			pstmt.setString(4, getPassword());
+			pstmt.executeUpdate();
+			pstmt.close();
+			System.out.println("\nAgent [" + toString() + "] created.\n");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static EstateAgent read(String login) {
