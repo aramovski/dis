@@ -28,21 +28,21 @@ Estate Agent \\
 
 Estate \\
 \begin{tabular}{ c | c | c | c | c | c | c }
- \soliduline{ID} & City & Postal Code & Street & Street Number & Square Area & \dashuline{EsateAgent.Login} \\
+ \soliduline{ID} & City & Postal Code & Street & Street Number & Square Area & \dashuline{Manager = EsateAgent.Login} \\
  \hline
   & & & & & & \\
 \end{tabular}
 
 Apartment \\
 \begin{tabular}{ c | c | c | c | c | c | c | c | c | c | c | c }
- \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floor & Rent & Rooms & Balcony & B.i. Kitchen & \dashuline{EsateAgent.Login} \\
+ \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floor & Rent & Rooms & Balcony & Kitchen & \dashuline{Manager = EsateAgent.Login} \\
  \hline
   & & & & & & & & & & &  \\
 \end{tabular}
 
 House \\
 \begin{tabular}{ c | c | c | c | c | c | c | c | c | c }
- \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floors & Price & Garden & \dashuline{EsateAgent.Login} \\
+ \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floors & Price & Garden & \dashuline{Manager = EsateAgent.Login} \\
  \hline
   & & & & & & & & & \\
 \end{tabular}
@@ -257,6 +257,13 @@ ALTER TABLE public.purchase_contract
 \end{verbatim}
 
 
+\subsection*{Estate Agent hinzuf\"ugen}
+
+\begin{verbatim}
+INSERT INTO public.estate_agent(
+    agent_login, agent_name, agent_address, agent_password)
+    VALUES ('testagent', 'testname', 'testaddress', 'testpassword');
+\end{verbatim}
 
 
 

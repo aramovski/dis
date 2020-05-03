@@ -1,8 +1,3 @@
-- Docker postgres DB lokal persistieren
-
-- Script für Erstellung von Tabellen schreiben
-- Tabellen mit Daten füllen (mindestens estate agent)
-
 Programm:
 - Beans für neue Tabellen erstellen
 

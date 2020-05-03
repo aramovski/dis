@@ -1,5 +1,9 @@
 package de.dis;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 import de.dis.data.EstateAgentManager;
 import de.dis.data.Makler;
 
@@ -7,6 +11,10 @@ import de.dis.data.Makler;
  * Hauptklasse
  */
 public class Main {
+	
+	final static String PASSWORD = "password";
+	
+	
 	/**
 	 * Startet die Anwendung
 	 */
@@ -38,8 +46,8 @@ public class Main {
 			switch (response) {
 			case MENU_AGENT:
 				// showMaklerMenu();
-				showEstateAgentMenu();
-				break;
+				if (checkPassword()) showEstateAgentMenu();
+				return;
 			case MENU_ESTATE:
 				showEstateMenu();
 				break;
@@ -52,6 +60,22 @@ public class Main {
 			}
 		}
 	}
+	
+	private static boolean checkPassword() {
+		System.out.println("Please enter password (='" + PASSWORD + "'): ");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		if (input.equalsIgnoreCase(PASSWORD)) {
+			System.out.println("Correct!\n\n");
+			return true;
+		} else {
+			System.out.println("Wrong password. Access denied!");
+			scanner.close();
+			return false;
+		}
+	}
+	
+	
 
 	public static void showEstateAgentMenu() {
 		final int CREATE_AGENT = 0;
@@ -83,9 +107,6 @@ public class Main {
 			}
 		}
 	}
-
-	
-	
 	
 	public static void showEstateMenu() {
 
