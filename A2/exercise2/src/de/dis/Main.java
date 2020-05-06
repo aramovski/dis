@@ -46,11 +46,11 @@ public class Main {
 
 			switch (response) {
 			case MENU_AGENT:
-				if (checkPassword()) showEstateAgentMenu();
+				if (checkPassword(PASSWORD)) showEstateAgentMenu();
 				return;
 			case MENU_ESTATE:
-				showEstateMenu();
-				break;
+				if (estateAgentLogin())showEstateMenu();
+				return;
 			case MENU_CONTRACT:
 				showContractMenu();
 				break;
@@ -61,11 +61,11 @@ public class Main {
 		}
 	}
 	
-	private static boolean checkPassword() {
-		System.out.println("Please enter password (='" + PASSWORD + "'): ");
+	private static boolean checkPassword(String password) {
+		System.out.println("Please enter password (='" + password + "'): ");
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
-		if (input.equalsIgnoreCase(PASSWORD)) {
+		if (input.equalsIgnoreCase(password)) {
 			System.out.println("Correct!\n\n");
 			return true;
 		} else {
@@ -73,6 +73,20 @@ public class Main {
 			scanner.close();
 			return false;
 		}
+	}
+
+	private static boolean estateAgentLogin() {
+		System.out.println("Estate Agent Login: ");
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+
+		EstateAgent agent = EstateAgent.read(input);
+		if (agent == null) {
+			System.out.println("Login [" + input + "] not found.\n");
+			return false;
+		}
+
+		return checkPassword(agent.getPassword());
 	}
 
 	public static void showEstateAgentMenu() {
@@ -108,7 +122,35 @@ public class Main {
 	}
 	
 	public static void showEstateMenu() {
+		final int CREATE_ESTATE = 0;
+		final int UPDATE_ESTATE = 1;
+		final int DELETE_ESTATE = 2;
+		final int BACK = 3;
 
+		Menu estateMenu = new Menu("Estate Management:");
+		estateMenu.addEntry("Create Estate", CREATE_ESTATE);
+		estateMenu.addEntry("Update Estate", UPDATE_ESTATE);
+		estateMenu.addEntry("Delete Estate", DELETE_ESTATE);
+		estateMenu.addEntry("Back to Main Menu", BACK);
+
+		while (true) {
+			int response = estateMenu.show();
+
+			switch (response) {
+				case CREATE_ESTATE:
+					// EstateAgentManager.createEstateAgent();
+					break;
+				case UPDATE_ESTATE:
+					// EstateAgentManager.updateEstateAgent();
+					break;
+				case DELETE_ESTATE:
+					// EstateAgentManager.deleteEstateAgent();
+					break;
+				case BACK:
+					showMainMenu();
+					return;
+			}
+		}
 	}
 
 	public static void showContractMenu() {
