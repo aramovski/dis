@@ -1,12 +1,7 @@
 Programm:
 - Beans für neue Tabellen erstellen
 
-- Management Mode für Estate Agents:
-- Estate Agents löschen
-
 - Management Mode für Estates:
-- Login mit Estate Agents
-- Estate erstellen
 - Estates löschen
 - Estates updaten
 

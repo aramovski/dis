@@ -1,5 +1,7 @@
 package de.dis.data;
 
+import de.dis.FormUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,5 +79,67 @@ public class Estate {
         String estateString = this.getId() + ", " + this.getCity() + ", " + this.getPostalcode() + ", "
                 + this.getStreet() + ", " + this.getStreetNumber() + ", " + this.getSquareArea() + ", " + this.getManager();
         return estateString;
+    }
+
+    public void save() {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            String insertSQL = "INSERT INTO estate(city, postal_code, street, street_number, square_area, manager)" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement pstmt = con.prepareStatement(insertSQL,
+                    Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.setString(1, getCity());
+            pstmt.setInt(2, getPostalcode());
+            pstmt.setString(3, getStreet());
+            pstmt.setString(4, getStreetNumber());
+            pstmt.setInt(5, getSquareArea());
+            pstmt.setString(6, getManager());
+
+            pstmt.executeUpdate();
+
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                setId(rs.getInt(1));
+            }
+
+            rs.close();
+            pstmt.close();
+
+            System.out.println("\nEstate [" + toString() + "] created.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Estate read(int id) {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            String selectSQL = "SELECT * FROM estate WHERE estate_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(selectSQL);
+            pstmt.setInt(1, id);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Estate estate = new Estate();
+                estate.setCity(rs.getString("city"));
+                estate.setPostalcode(rs.getInt("postal_code"));
+                estate.setStreet(rs.getString("street"));
+                estate.setStreetNumber(rs.getString("street_number"));
+                estate.setSquareArea(rs.getInt("square_area"));
+                estate.setManager(rs.getString("manager"));
+
+                rs.close();
+                pstmt.close();
+
+                return estate;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

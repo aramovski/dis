@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import de.dis.data.EstateAgent;
 import de.dis.data.EstateAgentManager;
+import de.dis.data.EstateManager;
 import de.dis.data.Makler;
 
 /**
@@ -14,8 +15,8 @@ import de.dis.data.Makler;
 public class Main {
 	
 	final static String PASSWORD = "password";
-	
-	
+
+
 	/**
 	 * Startet die Anwendung
 	 */
@@ -49,7 +50,8 @@ public class Main {
 				if (checkPassword(PASSWORD)) showEstateAgentMenu();
 				return;
 			case MENU_ESTATE:
-				if (estateAgentLogin())showEstateMenu();
+				String agent = estateAgentLogin();
+				if (agent != null) showEstateMenu(agent);
 				return;
 			case MENU_CONTRACT:
 				showContractMenu();
@@ -75,7 +77,7 @@ public class Main {
 		}
 	}
 
-	private static boolean estateAgentLogin() {
+	private static String estateAgentLogin() {
 		System.out.println("Estate Agent Login: ");
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
@@ -83,10 +85,10 @@ public class Main {
 		EstateAgent agent = EstateAgent.read(input);
 		if (agent == null) {
 			System.out.println("Login [" + input + "] not found.\n");
-			return false;
+			return null;
 		}
 
-		return checkPassword(agent.getPassword());
+		return checkPassword(agent.getPassword()) ? input : null;
 	}
 
 	public static void showEstateAgentMenu() {
@@ -121,13 +123,13 @@ public class Main {
 		}
 	}
 	
-	public static void showEstateMenu() {
+	public static void showEstateMenu(String manager) {
 		final int CREATE_ESTATE = 0;
 		final int UPDATE_ESTATE = 1;
 		final int DELETE_ESTATE = 2;
 		final int BACK = 3;
 
-		Menu estateMenu = new Menu("Estate Management:");
+		Menu estateMenu = new Menu("Estate Management. Logged in as [" + manager + "]");
 		estateMenu.addEntry("Create Estate", CREATE_ESTATE);
 		estateMenu.addEntry("Update Estate", UPDATE_ESTATE);
 		estateMenu.addEntry("Delete Estate", DELETE_ESTATE);
@@ -138,7 +140,7 @@ public class Main {
 
 			switch (response) {
 				case CREATE_ESTATE:
-					// EstateAgentManager.createEstateAgent();
+					EstateManager.showEstateCreateMenu(manager);
 					break;
 				case UPDATE_ESTATE:
 					// EstateAgentManager.updateEstateAgent();
