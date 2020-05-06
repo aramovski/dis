@@ -2,11 +2,9 @@ package de.dis.data;
 
 import de.dis.FormUtil;
 
-import java.text.Normalizer;
-
 public class EstateAgentManager {
 	
-	public static void newEstateAgent() {
+	public static void createEstateAgent() {
 		EstateAgent agent = new EstateAgent();
 
 		agent.setLogin(FormUtil.readString("Login"));
@@ -26,6 +24,12 @@ public class EstateAgentManager {
 		newAgent.setAddress(FormUtil.readString("New Address"));
 		newAgent.setPassword(FormUtil.readString("New Password"));
 		newAgent.update(oldLogin, newAgent);
+	}
+
+	public static void deleteEstateAgent() {
+		EstateAgent agent = new EstateAgent();
+		agent.setLogin(FormUtil.readString("Login from Agent you want to delete"));
+		agent.delete();
 	}
 
 }

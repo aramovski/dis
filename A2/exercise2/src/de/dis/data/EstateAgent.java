@@ -107,9 +107,9 @@ public class EstateAgent {
     }
 
     public void update(String oldLogin, EstateAgent newAgent) {
-        Connection con = DbConnectionManager.getInstance().getConnection();
-
         try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
             // Check if login name already exists
             if (read(oldLogin) == null) {
                 System.out.println("\nLogin [" + oldLogin + "] does not exist. Update not possible.\n");
@@ -134,6 +134,27 @@ public class EstateAgent {
         }
     }
 
-    public void delete(String login) {
+    public void delete() {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            // Check if login name already exists
+            if (read(this.getLogin()) == null) {
+                System.out.println("\nLogin [" + this.getLogin() + "] does not exist. Deletion not possible.\n");
+                return;
+            }
+            EstateAgent completeAgent = read(this.getLogin());
+
+            String deleteSQL = "DELETE FROM estate_agent WHERE agent_login = ?";
+            PreparedStatement pstmt = con.prepareStatement(deleteSQL);
+
+            pstmt.setString(1, completeAgent.getLogin());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            System.out.println("\nAgent [" + completeAgent.toString() + "] deleted.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

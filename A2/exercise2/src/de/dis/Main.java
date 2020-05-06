@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
+import de.dis.data.EstateAgent;
 import de.dis.data.EstateAgentManager;
 import de.dis.data.Makler;
 
@@ -45,7 +46,6 @@ public class Main {
 
 			switch (response) {
 			case MENU_AGENT:
-				// showMaklerMenu();
 				if (checkPassword()) showEstateAgentMenu();
 				return;
 			case MENU_ESTATE:
@@ -74,8 +74,6 @@ public class Main {
 			return false;
 		}
 	}
-	
-	
 
 	public static void showEstateAgentMenu() {
 		final int CREATE_AGENT = 0;
@@ -94,15 +92,16 @@ public class Main {
 
 			switch (response) {
 			case CREATE_AGENT:
-				EstateAgentManager.newEstateAgent();
+				EstateAgentManager.createEstateAgent();
 				break;
 			case UPDATE_AGENT:
 				EstateAgentManager.updateEstateAgent();
 				break;
 			case DELETE_AGENT:
-				//newMakler();
+				EstateAgentManager.deleteEstateAgent();
 				break;
 			case BACK:
+				showMainMenu();
 				return;
 			}
 		}
