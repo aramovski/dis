@@ -87,7 +87,7 @@ public class Main {
 		estateAgentMenu.addEntry("Create Agent", CREATE_AGENT);
 		estateAgentMenu.addEntry("Update Agent", UPDATE_AGENT);
 		estateAgentMenu.addEntry("Delete Agent", DELETE_AGENT);
-		estateAgentMenu.addEntry("Zurück zum Hauptmenü", BACK);
+		estateAgentMenu.addEntry("Back to Main Menu", BACK);
 
 		while (true) {
 			int response = estateAgentMenu.show();
@@ -100,7 +100,7 @@ public class Main {
 				EstateAgentManager.updateEstateAgent();
 				break;
 			case DELETE_AGENT:
-				newMakler();
+				//newMakler();
 				break;
 			case BACK:
 				return;

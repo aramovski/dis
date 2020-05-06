@@ -2,6 +2,8 @@ package de.dis.data;
 
 import de.dis.FormUtil;
 
+import java.text.Normalizer;
+
 public class EstateAgentManager {
 	
 	public static void newEstateAgent() {
@@ -15,19 +17,15 @@ public class EstateAgentManager {
 	}
 	
 	public static void updateEstateAgent() {
-		EstateAgent agent = new EstateAgent();
-		agent.setLogin(FormUtil.readString("Get Agent by Login"));
-		
-		EstateAgent tmpAgent = agent.read(agent.getLogin());
-		System.out.println("Agent loaded: [" + tmpAgent.toString() + "]");
+		EstateAgent newAgent = new EstateAgent();
 
-		agent.setLogin(FormUtil.readString("New Login"));
-		agent.setLogin(FormUtil.readString("New Name"));
-		agent.setAddress(FormUtil.readString("New Address"));
-		agent.setPassword(FormUtil.readString("New Password"));
-		agent.save();
+		String oldLogin = FormUtil.readString("Login from Agent you want to update");
 
-		System.out.println("Agent with Login [" + agent.getLogin() + "] created.");
+		newAgent.setLogin(FormUtil.readString("New Login"));
+		newAgent.setName(FormUtil.readString("New Name"));
+		newAgent.setAddress(FormUtil.readString("New Address"));
+		newAgent.setPassword(FormUtil.readString("New Password"));
+		newAgent.update(oldLogin, newAgent);
 	}
 
 }
