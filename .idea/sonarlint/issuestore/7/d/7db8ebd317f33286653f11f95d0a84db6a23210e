@@ -1,0 +1,22 @@
+
+squid:S1186s"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ü½Ü¶ùÿÿÿÿ
+Zsquid:UselessImportCheck"6Remove this unused import 'java.io.InputStreamReader'.(ãˆÎÉ
+O
+squid:S106E"9Replace this use of System.out or System.err by a logger.(¨‡áƒ
+T
+squid:S106A"9Replace this use of System.out or System.err by a logger.(íŠä€úÿÿÿÿ
+hsquid:S1301ˆ"KReplace this "switch" statement by "if" statements to increase readability.(§Í‡­ùÿÿÿÿ
+Wsquid:UselessImportCheck"3Remove this unused import 'java.io.BufferedReader'.(€é²Å
+U"squid:SwitchLastCaseIsDefaultCheck.""Add a default case to this switch.(§Í‡­ùÿÿÿÿ
+T
+squid:S106:"9Replace this use of System.out or System.err by a logger.(’²ÿ­ûÿÿÿÿ
+V"squid:SwitchLastCaseIsDefaultCheckˆ""Add a default case to this switch.(§Í‡­ùÿÿÿÿ
+U
+squid:S106Ÿ"9Replace this use of System.out or System.err by a logger.(ˆ²şÖûÿÿÿÿ
+gsquid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(‘‡Úëûÿÿÿÿ
+U"squid:SwitchLastCaseIsDefaultCheck_""Add a default case to this switch.(§Í‡­ùÿÿÿÿ
+T
+squid:S106H"9Replace this use of System.out or System.err by a logger.(ÌÌšáşÿÿÿÿ
+squid:S1186o"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(œè°§üÿÿÿÿ
+bsquid:CommentedOutCodeLineg"<This block of commented-out lines of code should be removed.(à¾®æ
+rsquid:S2068"V'PASSWORD' detected in this expression, review this potentially hard-coded credential.(•Œ£¥øÿÿÿÿ
