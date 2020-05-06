@@ -88,4 +88,11 @@ public class EstateManager {
 
         house.save();
     }
+
+    public static void deleteEstate(String manager) {
+        Estate estate = new Estate();
+        estate.setId(FormUtil.readInt("ID from estate you want to delete"));
+        estate.delete();
+    }
+
 }

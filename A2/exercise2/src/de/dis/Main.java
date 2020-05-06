@@ -146,7 +146,7 @@ public class Main {
 					// EstateAgentManager.updateEstateAgent();
 					break;
 				case DELETE_ESTATE:
-					// EstateAgentManager.deleteEstateAgent();
+					EstateManager.deleteEstate(manager);
 					break;
 				case BACK:
 					showMainMenu();

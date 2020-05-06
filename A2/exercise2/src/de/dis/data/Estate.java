@@ -142,4 +142,29 @@ public class Estate {
         }
         return null;
     }
+
+    public void delete() {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            // Check if ID exists
+            if (read(this.getId()) == null) {
+                System.out.println("\nEstate [" + this.getId() + "] does not exist. Deletion not possible.\n");
+                return;
+            }
+            Estate completeEstate = read(id);
+            completeEstate.setId(id);
+
+            String deleteSQL = "DELETE FROM estate WHERE estate_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(deleteSQL);
+
+            pstmt.setInt(1, this.getId());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            System.out.println("\nEstate [" + completeEstate.toString() + "] deleted.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
