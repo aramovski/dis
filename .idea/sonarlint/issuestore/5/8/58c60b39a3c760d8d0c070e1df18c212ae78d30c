@@ -1,6 +1,5 @@
 
-?squid:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
 ksquid:S3008"TRename this field "_instance" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥µìÈ
 gsquid:S00116"ORename this field "_con" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëì…
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(ô¾Ö¬øÿÿÿÿ8½ª¯Ì.
+?squid:S1148*"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Òê±üÿÿÿÿ8şŠšÍ.

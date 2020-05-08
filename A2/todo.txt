@@ -2,7 +2,6 @@ Programm:
 - Beans für neue Tabellen erstellen
 
 - Management Mode für Estates:
-- Estates löschen
 - Estates updaten
 
 - Contract Management:

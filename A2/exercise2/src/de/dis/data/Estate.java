@@ -145,6 +145,7 @@ public class Estate {
 
     public void delete() {
         try {
+            //TODO check if manager is allows: estate.manager = manager
             Connection con = DbConnectionManager.getInstance().getConnection();
 
             // Check if ID exists
