@@ -292,7 +292,7 @@ Detail: Key (person-id)=(123) is not present in table person.
 
 \textit{Which inheritance model did you choose and why?
 } \\
-Horizontal: Was more intuitive for us and easier to implement.
+Horizontal: Postgresql offers the INHERITS keyword, which enables horizontal partitioning. Therefore we used this keyword because it is intuitive to use easy to implement.
 
 \textit{Create an apartment, and let your application crash between inserting the estate information and inserting the apartment information. What is the effect on your database state?
 } \\
