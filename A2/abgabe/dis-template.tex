@@ -271,9 +271,24 @@ INSERT INTO public.estate_agent(
 
 \textit{Create an apartment, an estate agent and a tenancy contract with your java application. Validate that they are in the database (e.g. by using a screenshot of application and database).}
 
+\subsection*{Create Estate Agent}
+\includegraphics[scale=.5]{agent_app} \\
+\includegraphics[scale=.5]{agent_db}
+
+\subsection*{Create Apartment}
+\includegraphics[scale=.5]{estate_app} \\
+\includegraphics[scale=.3]{estate_db}
+
+\subsection*{Create Tenancy Contract}
+\includegraphics[scale=.5]{contract_app} \\
+\includegraphics[scale=.4]{contract_db} \\ \\
+
 
 \textit{Create a contract with a non-existing estate. Does it work? Why/Why not?
-}
+} \\
+No it does not work. The foreign key `apartment-id' in the tenancy contract table needs to be valid. If the entered id is not existing in the corresponding estate table, an exception will be thrown: \\
+ERROR: insert or update on table tenancy-contract violates foreign key constraint person-id \\
+Detail: Key (person-id)=(123) is not present in table person.
 
 \textit{Which inheritance model did you choose and why?
 } \\

@@ -23,3 +23,13 @@ _
 /A2/exercise2/src/de/dis/data/EstateManager.java,8/a/8a7cca5f5169c9a82364b68a673b1f28b349840c
 X
 (A2/exercise2/src/de/dis/data/Estate.java,d/2/d24637f21936db0832a8f269d896fbe2edc6e98a
+a
+1A2/exercise2/src/de/dis/data/ContractManager.java,8/b/8bcb52f9d3325bd046ba862b5283f97cb7cf28b8
+b
+2A2/exercise2/src/de/dis/data/PurchaseContract.java,5/a/5a7eae6cdfdadb8ee3199aa03e8c70ac2b7100df
+a
+1A2/exercise2/src/de/dis/data/TenancyContract.java,2/f/2f3d2d473c6e0a0f871eaaf5bb2444ea1c6ac625
+Z
+*A2/exercise2/src/de/dis/data/Contract.java,6/f/6fee35a4ba35db2e5387d2985c3a323d74b67306
+X
+(A2/exercise2/src/de/dis/data/Person.java,9/6/96796ccc830d8a81afe3bd0861ca93b4135db419
