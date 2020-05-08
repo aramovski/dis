@@ -18,11 +18,11 @@ public class ContractManager {
 
     public static void ShowCreateTenancyContractMenu() {
         int estateID = FormUtil.readInt("Estate ID");
-        int personID = FormUtil.readInt("Buyer ID");
+        int personID = FormUtil.readInt("Tenant ID");
         String startDate = FormUtil.readString("Start Date (Format DD.MM.YYYY)");
         String duration = FormUtil.readString("Duration");
         String addCosts = FormUtil.readString("Additional Costs");
-        String contractDate = FormUtil.readString("Contract Date");
+        String contractDate = FormUtil.readString("Contract Date (Format DD.MM.YYYY)");
         String contractPlace = FormUtil.readString("Settlement Place");
 
         try {
@@ -38,7 +38,7 @@ public class ContractManager {
         int personID = FormUtil.readInt("Buyer ID");
         String noInstallments = FormUtil.readString("Number of Installments");
         String interestRate = FormUtil.readString("Interest Rate");
-        String contractDate = FormUtil.readString("Contract Date");
+        String contractDate = FormUtil.readString("Contract Date (Format DD.MM.YYYY)");
         String contractPlace = FormUtil.readString("Settlement Place");
 
         try {
@@ -60,6 +60,7 @@ public class ContractManager {
 
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
+            System.out.println("=====================================================");
             while (rs.next()) {
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) System.out.print(",  ");
@@ -68,6 +69,7 @@ public class ContractManager {
                 }
                 System.out.println("");
             }
+            System.out.println("=====================================================");
         } catch (SQLException e) {
             e.printStackTrace();
         }

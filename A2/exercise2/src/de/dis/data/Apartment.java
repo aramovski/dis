@@ -59,6 +59,41 @@ public class Apartment extends Estate {
         return super.toString() + apartmentString;
     }
 
+    public static Apartment read(int id) {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            String selectSQL = "SELECT * FROM apartment WHERE estate_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(selectSQL);
+            pstmt.setInt(1, id);
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Apartment estate = new Apartment();
+                estate.setId(rs.getInt("estate_id"));
+                estate.setCity(rs.getString("city"));
+                estate.setPostalcode(rs.getInt("postal_code"));
+                estate.setStreet(rs.getString("street"));
+                estate.setStreetNumber(rs.getString("street_number"));
+                estate.setSquareArea(rs.getInt("square_area"));
+                estate.setManager(rs.getString("manager"));
+                estate.setFloor(rs.getInt("floor"));
+                estate.setRent(rs.getString("rent"));
+                estate.setRooms(rs.getString("rooms"));
+                estate.setBalcony(rs.getBoolean("balcony"));
+                estate.setKitchen(rs.getBoolean("kitchen"));
+
+                rs.close();
+                pstmt.close();
+
+                return estate;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void save() {
         try {
             Connection con = DbConnectionManager.getInstance().getConnection();
@@ -93,6 +128,53 @@ public class Apartment extends Estate {
             pstmt.close();
 
             System.out.println("\nApartment [" + toString() + "] created.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(int estateId, Apartment newEstate, String manager) {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            // Check if estate already exists
+            if (read(estateId) == null) {
+                System.out.println("\nApartment [" + estateId + "] does not exist. Update not possible.\n");
+                return;
+            }
+            Apartment oldEstate = read(estateId);
+
+            // Check if manager manages estate
+            if (!oldEstate.getManager().equals(manager)) {
+                System.out.println("\nManager [" + manager + "] not allowed to update estate.\n");
+                return;
+            }
+
+            String updateSQL = "UPDATE apartment SET city = ?, postal_code = ?, street = ?, street_number = ?," +
+                    " square_area = ?, manager = ?, floor = ?, rent = ?, rooms = ?, " +
+                    "balcony = ?, kitchen = ? WHERE estate_id = ?";
+
+
+            PreparedStatement pstmt = con.prepareStatement(updateSQL);
+
+            pstmt.setString(1, newEstate.getCity());
+            pstmt.setInt(2, newEstate.getPostalcode());
+            pstmt.setString(3, newEstate.getStreet());
+            pstmt.setString(4, newEstate.getStreetNumber());
+            pstmt.setInt(5, newEstate.getSquareArea());
+            pstmt.setString(6, newEstate.getManager());
+            pstmt.setInt(7, newEstate.getFloor());
+            pstmt.setString(8, newEstate.getRent());
+            pstmt.setString(9, newEstate.getRooms());
+            pstmt.setBoolean(10, newEstate.isBalcony());
+            pstmt.setBoolean(11, newEstate.isKitchen());
+            pstmt.setInt(12, estateId);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            newEstate.setId(estateId);
+
+            System.out.println("\nApartment [" + oldEstate.toString() + "] updated to [" + newEstate.toString() + "].\n");
         } catch (SQLException e) {
             e.printStackTrace();
         }

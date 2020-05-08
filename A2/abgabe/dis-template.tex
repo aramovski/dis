@@ -13,7 +13,7 @@
 
 \section*{1.2 DB-Schema}
 
-\subsection*{Tabellen}
+\subsection*{Tables}
 
 => Horizontal Partitioning
 
@@ -96,7 +96,7 @@ Purchase Contract  \\
 
 \subsection*{SQL Scripts}
 
-\subsection*{Datenbank erstellen}
+\subsection*{Create Database}
 
 \begin{verbatim}
 CREATE DATABASE dis
@@ -107,7 +107,7 @@ CREATE DATABASE dis
 \end{verbatim}
 
 
-\subsection*{Tabellen erstellen}
+\subsection*{Create Tables}
 
 \begin{verbatim}
 CREATE TABLE public.estate_agent
@@ -257,7 +257,7 @@ ALTER TABLE public.purchase_contract
 \end{verbatim}
 
 
-\subsection*{Estate Agent hinzuf\"ugen}
+\subsection*{Insert Estate Agent}
 
 \begin{verbatim}
 INSERT INTO public.estate_agent(
@@ -267,113 +267,22 @@ INSERT INTO public.estate_agent(
 
 
 
+\section*{1.3 Java Application - Questions}
 
-\section{Beispiel für Operatorbaum}
-
-\begin{tikzpicture}
-\node (Haustier) {Haustier};
-\node (Wolf) [left=25mm of Haustier] {Wolf};
-\node (join1) [above=20mm of $(Haustier)!.5!(Wolf)$] {$\verbund{Wolf.WID=Haustier.HID}$};
-\node (selektion1) [above=of join1] {$\selektion{Name=\wert{Hasso}}$};
-\node (projektion) [above=of selektion1] {$\projektion{Rasse}$};
-\node (final) [above=of projektion] {};
-
-\path (Haustier) edge node[smallr,near start,above right] {200 Tupel\\4 Attribute} (join1);
-\path (Wolf) edge node[smalll,near start,above left] {1000 Tupel\\6 Attribute} (join1);
-\path (join1) edge node[smallr,near start,above left] {?? Tupel\\?? Attribute} (selektion1);
-\path (selektion1) edge node[smallr,midway,left] {$??\cdot\frac{??}{??}=??$ Tupel\\?? Attribute} (projektion);
-\path (projektion) edge node[smallr,midway,left] {$??$ Tupel\\1 Attribut} (final);
-\end{tikzpicture}
+\textit{Create an apartment, an estate agent and a tenancy contract with your java application. Validate that they are in the database (e.g. by using a screenshot of application and database).}
 
 
+\textit{Create a contract with a non-existing estate. Does it work? Why/Why not?
+}
 
+\textit{Which inheritance model did you choose and why?
+} \\
+Horizontal: Was more intuitive for us and easier to implement.
 
-
-
-
-\section{Beispiel fürr Tabelle mit Sperranforderungen}
-
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|p{1cm}|p{3cm}|}
-\hline
-Zeitschritt & T\ts{1} & T\ts{2} & T\ts{3} & x & y & z & Bemerkung\\
-\hline
-\hline
-0 &  &  &  & NL & NL & NL & \\
-\hline
-1 & lock(x,X) &  &  & X\ts{1} & NL & NL & \\
-\hline
-2 & write(x) & lock(y,R) &  & X\ts{1} & R\ts{2} & NL & \\
-\hline
-3 &  &  &  &  &  &  & \\
-\hline
-4 &  &  &  &  &  &  & \\
-\hline
-5 &  &  &  &  &  &  & \\
-\hline
-\end{tabular}
-
-
-
-\section{Beispiel für B-  und B*-Bäumen}
-
-Löschen Sie aus dem unten abgebildeten  \textbf{B*-Baum} der Klasse $\tau(1,2,h)$
-die Datensätze mit den Schlüsselwerten \textbf{40}, \textbf{43}, \textbf{38}, \textbf{32} und \textbf{90} (in dieser Reihenfolge).
-Geben Sie jeweils kurz an, welche konkrete Maßnahme Sie durchgeführt haben (Mischen, Ausgleichen, einfaches Löschen) und zeichnen Sie den Baum nach jedem Mischen und Ausgleichen neu.
-Für Ausgleichs- und Mischoperationen sollen nur direkt benachbarte Geschwisterknoten (bevorzugt der rechte) herangezogen werden.
-
-\begin{center}
-\begin{tikzpicture}
-\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
-\tikzstyle{every node}=[bplus]
-\tikzstyle{level 1}=[sibling distance=30mm]
-\tikzstyle{level 2}=[sibling distance=15mm]
-
-\node {12 \nodepart{two} 47  } [->]
- child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\; } }
- child {node {32 \nodepart{two} 38 \nodepart{three} 40 \nodepart{four} 43}}
-  child {node {86 \nodepart{two} 88 \nodepart{three} 90 \nodepart{four} \;\;\;}}
-;\end{tikzpicture}
-\end{center}
-
-
-40 und 43, Einfaches Löschen\\
-38, Ausgleichen
-
-\begin{center}
-\begin{tikzpicture}
-\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
-\tikzstyle{every node}=[bplus]
-\tikzstyle{level 1}=[sibling distance=30mm]
-\tikzstyle{level 2}=[sibling distance=15mm]
-
-\node {12 \nodepart{two} 86 } [->]
- child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
- child {node {32 \nodepart{two} 86 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
-  child {node {88 \nodepart{two} 90 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
-;\end{tikzpicture}
-\end{center}
-
-32, Mischen
-
-\begin{center}
-\begin{tikzpicture}
-\tikzstyle{bplus}=[rectangle split, rectangle split horizontal,rectangle split ignore empty parts,draw]
-\tikzstyle{every node}=[bplus]
-\tikzstyle{level 1}=[sibling distance=30mm]
-\tikzstyle{level 2}=[sibling distance=15mm]
-
-\node {12} [->]
- child {node {6 \nodepart{two} 12 \nodepart{three} \;\;\; \nodepart{four} \;\;\;}}
- child {node {86 \nodepart{two} 88 \nodepart{three} 90 \nodepart{four} \;\;\;}}
-;\end{tikzpicture}
-\end{center}
-
-90, Einfaches Löschen
-
-
-
-
-
+\textit{Create an apartment, and let your application crash between inserting the estate information and inserting the apartment information. What is the effect on your database state?
+} \\
+Since it is only possible to create an apartment or house in one go, this use case will not happen.
+If the application crashes while the user inserts information for the estate he wants to create, the record will not be saved.
 
 
 \end{document}

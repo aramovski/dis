@@ -19,7 +19,7 @@ public class PurchaseContract extends Contract {
     public void save() {
         try {
             Connection con = DbConnectionManager.getInstance().getConnection();
-            String insertSQL = "INSERT INTO purchase_contract(contract_date, place, installment_amount, intrest_rate, person_id, apartment_id)" +
+            String insertSQL = "INSERT INTO purchase_contract(contract_date, place, installment_amount, intrest_rate, person_id, house_id)" +
                     "VALUES (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement pstmt = con.prepareStatement(insertSQL,

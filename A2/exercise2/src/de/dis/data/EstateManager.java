@@ -8,6 +8,10 @@ import static de.dis.Main.showMainMenu;
 
 public class EstateManager {
 
+    // ************
+    // MENUS
+    // ************
+
     public static void showEstateCreateMenu(String manager) {
         final int CREATE_ESTATE = 0;
         final int CREATE_APARTMENT = 1;
@@ -15,7 +19,7 @@ public class EstateManager {
         final int BACK = 3;
 
         Menu estateMenu = new Menu("Create new Estate. Only [" + manager + "] can perform actions");
-        estateMenu.addEntry("Create Estate", CREATE_ESTATE);
+        // estateMenu.addEntry("Create Estate", CREATE_ESTATE);
         estateMenu.addEntry("Create Apartment", CREATE_APARTMENT);
         estateMenu.addEntry("Create House", CREATE_HOUSE);
         estateMenu.addEntry("Back to Estate Menu", BACK);
@@ -41,6 +45,45 @@ public class EstateManager {
             }
         }
     }
+
+    public static void showEstateUpdateMenu(String manager) {
+        final int UPDATE_ESTATE = 0;
+        final int UPDATE_APARTMENT = 1;
+        final int UPDATE_HOUSE = 2;
+        final int BACK = 3;
+
+        Menu estateMenu = new Menu("Update Estate. Only [" + manager + "] can perform actions");
+        // estateMenu.addEntry("Update Estate", UPDATE_ESTATE);
+        estateMenu.addEntry("Update Apartment", UPDATE_APARTMENT);
+        estateMenu.addEntry("Update House", UPDATE_HOUSE);
+        estateMenu.addEntry("Back to Estate Menu", BACK);
+
+        while (true) {
+            int response = estateMenu.show();
+
+            switch (response) {
+                case UPDATE_ESTATE:
+                    updateEstate(manager);
+                    break;
+                case UPDATE_APARTMENT:
+                    updateApartment(manager);
+                    break;
+                case UPDATE_HOUSE:
+                    updateHouse(manager);
+                    break;
+                case BACK:
+                    showEstateMenu(manager);
+                    return;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + response);
+            }
+        }
+    }
+
+
+    // ************
+    // CRUD Methods
+    // ************
 
     public static void createEstate(String manager) {
         Estate estate = new Estate();
@@ -92,7 +135,58 @@ public class EstateManager {
     public static void deleteEstate(String manager) {
         Estate estate = new Estate();
         estate.setId(FormUtil.readInt("ID from estate you want to delete"));
-        estate.delete();
+        estate.delete(manager);
     }
 
+    public static void updateEstate(String manager) {
+        Estate newEstate = new Estate();
+
+        int estateId = FormUtil.readInt("ID from Estate you want to update");
+
+        newEstate.setCity(FormUtil.readString("New City"));
+        newEstate.setPostalcode(FormUtil.readInt("New Postalcode"));
+        newEstate.setStreet(FormUtil.readString("New Street"));
+        newEstate.setStreetNumber(FormUtil.readString("New Street Number"));
+        newEstate.setSquareArea(FormUtil.readInt("New Square Area"));
+        newEstate.setManager(manager);
+        newEstate.update(estateId, newEstate, manager);
+    }
+
+    public static void updateApartment(String manager) {
+        Apartment newEstate = new Apartment();
+
+        int estateId = FormUtil.readInt("ID from Apartment you want to update");
+
+        newEstate.setCity(FormUtil.readString("New City"));
+        newEstate.setPostalcode(FormUtil.readInt("New Postalcode"));
+        newEstate.setStreet(FormUtil.readString("New Street"));
+        newEstate.setStreetNumber(FormUtil.readString("New Street Number"));
+        newEstate.setSquareArea(FormUtil.readInt("New Square Area"));
+        newEstate.setManager(manager);
+        newEstate.setFloor(FormUtil.readInt("New Floor"));
+        newEstate.setRent(FormUtil.readString("New Rent"));
+        newEstate.setRooms(FormUtil.readString("New Rooms"));
+        newEstate.setBalcony(FormUtil.readInt("New Balcony (1 = yes)") == 1);
+        newEstate.setKitchen(FormUtil.readInt("New Kitchen (1 = yes)") == 1);
+
+        newEstate.update(estateId, newEstate, manager);
+    }
+
+    public static void updateHouse(String manager) {
+        House newEstate = new House();
+
+        int estateId = FormUtil.readInt("ID from House you want to update");
+
+        newEstate.setCity(FormUtil.readString("New City"));
+        newEstate.setPostalcode(FormUtil.readInt("New Postalcode"));
+        newEstate.setStreet(FormUtil.readString("New Street"));
+        newEstate.setStreetNumber(FormUtil.readString("New Street Number"));
+        newEstate.setSquareArea(FormUtil.readInt("New Square Area"));
+        newEstate.setManager(manager);
+        newEstate.setFloors(FormUtil.readInt("New Floors"));
+        newEstate.setPrice(FormUtil.readString("New Price"));
+        newEstate.setGarden(FormUtil.readInt("New Garden (1 = yes)") == 1);
+
+        newEstate.update(estateId, newEstate, manager);
+    }
 }

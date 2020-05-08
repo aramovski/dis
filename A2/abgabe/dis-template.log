@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  3 MAY 2020 13:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  8 MAY 2020 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -903,7 +903,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 317.
+Package pdftex.def Info: dbis.pdf used on input line 291.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -912,55 +912,28 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 Overfull \vbox (77.26578pt too high) has occurred while \output is active []
 
 
-[5] <use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 379.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[6] (./dis-template.aux) ) 
+[5] (./dis-template.aux) ) 
 Here is how much of TeX's memory you used:
- 17763 strings out of 493089
- 365372 string characters out of 6134843
- 511604 words of memory out of 5000000
- 20865 multiletter control sequences out of 15000+600000
- 22599 words of font info for 63 fonts, out of 8000000 for 9000
+ 17520 strings out of 493089
+ 360003 string characters out of 6134843
+ 501677 words of memory out of 5000000
+ 20629 multiletter control sequences out of 15000+600000
+ 17990 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,23n,81p,447b,936s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,23n,81p,447b,626s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/c
 m-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super
-/sfss0800.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/s
-fss1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfs
-s1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1
-000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx109
-5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1200.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-
-Output written on dis-template.pdf (6 pages, 226180 bytes).
+cm-super/sfsi1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm
+-super/sfss1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-s
+uper/sfss1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-sup
+er/sfsx1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super
+/sfsx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/s
+fsx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sft
+t1095.pfb>
+Output written on dis-template.pdf (5 pages, 148740 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
+ 70 PDF objects out of 1000 (max. 8388607)
+ 49 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

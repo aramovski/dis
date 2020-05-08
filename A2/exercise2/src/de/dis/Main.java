@@ -140,7 +140,7 @@ public class Main {
 					EstateManager.showEstateCreateMenu(manager);
 					break;
 				case UPDATE_ESTATE:
-					// EstateAgentManager.updateEstateAgent();
+					EstateManager.showEstateUpdateMenu(manager);
 					break;
 				case DELETE_ESTATE:
 					EstateManager.deleteEstate(manager);
@@ -159,7 +159,7 @@ public class Main {
 		final int SHOW_CONTRACTS = 3;
 		final int BACK = 4;
 
-		Menu contractMenu = new Menu("Contract Menu.");
+		Menu contractMenu = new Menu("Contract Menu");
 		contractMenu.addEntry("Insert Person", INSERT_PERSON);
 		contractMenu.addEntry("Sign/Create Tenancy Contract", CREATE_TCONTRACT);
 		contractMenu.addEntry("Sign/Create Purchase Contract", CREATE_PCONTRACT);

@@ -1,13 +1,6 @@
-Programm:
-- Beans für neue Tabellen erstellen
-
 - Management Mode für Estates:
 - Estates updaten
 
-- Contract Management:
-- Personen einfügen
-- Contracts erstellen
-- Überblick über alle Contracts
 
 
 

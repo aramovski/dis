@@ -125,6 +125,7 @@ public class Estate {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 Estate estate = new Estate();
+                estate.setId(rs.getInt("estate_id"));
                 estate.setCity(rs.getString("city"));
                 estate.setPostalcode(rs.getInt("postal_code"));
                 estate.setStreet(rs.getString("street"));
@@ -143,9 +144,8 @@ public class Estate {
         return null;
     }
 
-    public void delete() {
+    public void delete(String manager) {
         try {
-            //TODO check if manager is allows: estate.manager = manager
             Connection con = DbConnectionManager.getInstance().getConnection();
 
             // Check if ID exists
@@ -156,6 +156,12 @@ public class Estate {
             Estate completeEstate = read(id);
             completeEstate.setId(id);
 
+            // Check if manager manages estate
+            if (!completeEstate.getManager().equals(manager)) {
+                System.out.println("\nManager [" + manager + "] not allowed to delete estate.\n");
+                return;
+            }
+
             String deleteSQL = "DELETE FROM estate WHERE estate_id = ?";
             PreparedStatement pstmt = con.prepareStatement(deleteSQL);
 
@@ -164,6 +170,44 @@ public class Estate {
             pstmt.close();
 
             System.out.println("\nEstate [" + completeEstate.toString() + "] deleted.\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(int estateId, Estate newEstate, String manager) {
+        try {
+            Connection con = DbConnectionManager.getInstance().getConnection();
+
+            // Check if estate already exists
+            if (read(estateId) == null) {
+                System.out.println("\nEstate [" + estateId + "] does not exist. Update not possible.\n");
+                return;
+            }
+            Estate oldEstate = read(estateId);
+
+            // Check if manager manages estate
+            if (!oldEstate.getManager().equals(manager)) {
+                System.out.println("\nManager [" + manager + "] not allowed to update estate.\n");
+                return;
+            }
+
+            String updateSQL = "UPDATE estate SET city = ?, postal_code = ?, street = ?, street_number = ?," +
+                    " square_area = ?, manager = ? WHERE estate_id = ?";
+
+            PreparedStatement pstmt = con.prepareStatement(updateSQL);
+
+            pstmt.setString(1, newEstate.getCity());
+            pstmt.setInt(2, newEstate.getPostalcode());
+            pstmt.setString(3, newEstate.getStreet());
+            pstmt.setString(4, newEstate.getStreetNumber());
+            pstmt.setInt(5, newEstate.getSquareArea());
+            pstmt.setString(6, newEstate.getManager());
+            pstmt.setInt(7, estateId);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            System.out.println("\nEstate [" + oldEstate.toString() + "] updated to [" + newEstate.toString() + "].\n");
         } catch (SQLException e) {
             e.printStackTrace();
         }
