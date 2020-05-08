@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-import de.dis.data.EstateAgent;
-import de.dis.data.EstateAgentManager;
-import de.dis.data.EstateManager;
-import de.dis.data.Makler;
+import de.dis.data.*;
 
 /**
  * Hauptklasse
@@ -156,7 +153,40 @@ public class Main {
 	}
 
 	public static void showContractMenu() {
+		final int INSERT_PERSON = 0;
+		final int CREATE_TCONTRACT = 1;
+		final int CREATE_PCONTRACT = 2;
+		final int SHOW_CONTRACTS = 3;
+		final int BACK = 4;
 
+		Menu contractMenu = new Menu("Contract Menu.");
+		contractMenu.addEntry("Insert Person", INSERT_PERSON);
+		contractMenu.addEntry("Sign/Create Tenancy Contract", CREATE_TCONTRACT);
+		contractMenu.addEntry("Sign/Create Purchase Contract", CREATE_PCONTRACT);
+		contractMenu.addEntry("Show Contracts", SHOW_CONTRACTS);
+		contractMenu.addEntry("Back", BACK);
+
+		while(true)
+		{
+			int response = contractMenu.show();
+			switch (response)
+			{
+				case INSERT_PERSON:
+					ContractManager.ShowInsertPersonMenu();
+					break;
+				case CREATE_TCONTRACT:
+					ContractManager.ShowCreateTenancyContractMenu();
+					break;
+				case CREATE_PCONTRACT:
+				    ContractManager.ShowCreatePurchaseContractMenu();
+					break;
+				case SHOW_CONTRACTS:
+				    ContractManager.ShowListContractsMenu();
+					break;
+				case BACK:
+					return;
+			}
+		}
 	}
 
 	/**
