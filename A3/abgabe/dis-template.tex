@@ -79,15 +79,49 @@ INSERT INTO public."OPK"(
 \end{verbatim}
 
 
-
-
-
-
-
 \subsection*{d)}
+
+Scenario: A transaction T1 updates / writes into the same row in the same table OPK, at the same time. T1 holds an exclusive lock (e.g. on row-level or table-level).
+The transaction T2 from the exercise sheet tries to get a shared lock for the select query. But T2 must wait until T1 releases its lock.
+When T1 ends and releases its exclusive lock, T2 gets shared lock, queries OPK table and ends.
+
+Read Committed:
+
+Under read committed isolation, the user is only allowed to read committed data.
+If a transaction needs to read a row that has been modified by an incomplete transaction in another session, the transaction waits until the first transaction completes (either commits or rolls back.)
+Read Committed isolation prevents Dirty Read.
+
+read committed releases the shared lock as soon as possible
+
+Diese Isolationsebene setzt für die gesamte Transaktion Schreibsperren auf Objekten, die verändert werden sollen, setzt Lesesperren aber nur kurzzeitig beim tatsächlichen Lesen der Daten ein. Daher können Non-Repeatable Read und Phantom Read auftreten, wenn während wiederholten Leseoperationen auf dieselben Daten, zwischen der ersten und der zweiten Leseoperation, eine Schreiboperation einer anderen Transaktion die Daten verändert und committed.
+
+In DB2: Read Committed = Cursor Stability
+CS is the default isolation level.
+- Locks and unlocks each row, 1 at a time (never has 2 locks at once)
+- Guaranteed to only return data which was committed at the time of the
+read
+
+Cursor Stability - 2 Locks needed
+IS Table lock, 1 NS row lock
+
+
+Shared Locks are acquired for the concerned records.
+The Shared Locks are released when the current instruction ends.
+This isolation level prevents "Dirty Reads" but, since the record can be updated by other concurrent transactions, "Non-Repeatable Reads" (transaction A retrieves a row, transaction B subsequently updates the row, and transaction A later retrieves the same row again. Transaction A retrieves the same row twice but sees different data) or "Phantom Reads" (in the course of a transaction, two identical queries are executed, and the collection of rows returned by the second query is different from the first) can occur.
+
 
 \subsection*{e)}
 
+
+
+
+The transaction can repeat the same query, and no rows that have been read by the transaction will have been updated or deleted.
+
+
+
+Under Repeatable Reads isolation level, Shared Locks are acquired for the transaction duration. "Dirty Reads" and "Non-Repeatable Reads" are prevented but "Phantom Reads" can still occur.
+
+REPEATABLE READ guarantees that no item you've selected the first time can be modified or deleted until you commit.
 
 
 %\begin{RMSchma}
