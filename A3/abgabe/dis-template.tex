@@ -42,7 +42,47 @@ SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL
 
 \subsection*{b)}
 
+\begin{verbatim}
+CREATE TABLE public."OPK"
+(
+    "ID" integer,
+    "NAME" text
+);
+
+ALTER TABLE public."OPK"
+    OWNER to postgres;
+\end{verbatim}
+
+
 \subsection*{c)}
+
+\begin{verbatim}
+INSERT INTO public."OPK"(
+    "ID", "NAME")
+    VALUES (1, 'shaggy');
+
+INSERT INTO public."OPK"(
+    "ID", "NAME")
+    VALUES (2, 'fred');
+	
+INSERT INTO public."OPK"(
+    "ID", "NAME")
+    VALUES (3, 'velma');
+	
+INSERT INTO public."OPK"(
+    "ID", "NAME")
+    VALUES (4, 'scooby');
+	
+INSERT INTO public."OPK"(
+    "ID", "NAME")
+    VALUES (5, 'daphne');
+\end{verbatim}
+
+
+
+
+
+
 
 \subsection*{d)}
 
