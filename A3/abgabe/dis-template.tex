@@ -90,7 +90,7 @@ If a transaction needs to read a row that has been modified by an incomplete tra
 Therefore read committed isolation prevents Dirty Read.
 
 Read committed holds exclusive locks during the whole transaction.
-Shared locks on the other hand are acquired as late as possible and released as soon as possible.
+Shared locks on the other hand are acquired as late as possible and released as soon as possible. Shared locks are being released at the end of each statement.
 Therefore, Phantom Reads and Non-Repeatable Reads can occur.
 
 In DB2, the read committed isolation level is called \textit{Cursor Stability} and is the default isolation level.
@@ -98,22 +98,27 @@ In DB2, the read committed isolation level is called \textit{Cursor Stability} a
 Example:
 In the example, the transaction would hold exclusive locks for all write or update queries. Since the transaction will only read data, no exclusive lock will be hold.
 For the SELECT query, the transaction will hold a shared lock for the OPK table where ID is equal to 3. It will only read the data, if there are no uncommitted changes.
-After the SELECT query and before the commit, the transaction will release the shared lock.
+After the SELECT statement and before the commit, the transaction will release the shared lock.
 After the commit, no locks are hold by the query.
 
 
 \subsection*{e)}
 
+\textbf{Repeatable Read}
 
-
-
+Repeatable Read guarantees that no item that has been selected the first time can be modified or deleted until the commit.
 The transaction can repeat the same query, and no rows that have been read by the transaction will have been updated or deleted.
 
+Repeatable Read disallows Dirty Reads, Lost Updates and Non-Repeatable Reads, but Phantom Reads can occur.
+This means that the set of rows that is returned by two consecutive select queries in a transaction can differ. This happens if another transaction adds or removes rows from the same table.
 
+Under Repeatable Read isolation level, shared locks are placed on all data read by each statement in the transaction and are held until the transaction completes.
+This prevents other transactions from modifying any rows that have been read by the current transaction.
+Shared locks are held to the end of a transaction instead of being released at the end of each statement.
 
-Under Repeatable Reads isolation level, Shared Locks are acquired for the transaction duration. "Dirty Reads" and "Non-Repeatable Reads" are prevented but "Phantom Reads" can still occur.
-
-REPEATABLE READ guarantees that no item you've selected the first time can be modified or deleted until you commit.
+Example:
+By the start of the transaction, a shared lock will be held for the row where ID = 3. The shared lock will only be released after the commit. This means that no other transaction can modify the data from the selected row.
+During the transaction, other queries that add or remove rows to the table may still occur.
 
 
 %\begin{RMSchma}
