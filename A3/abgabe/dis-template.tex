@@ -138,11 +138,108 @@ During the transaction, other queries that add or remove rows to the table may s
 
 \subsection*{a)}
 
+\begin{itemize}
+\item What happens? What is the output of Connection 1?
+
+Repeatable read ensures that dirty reads, lost updates and non-repeatable reads are not possible. Phantom reads can still occur.
+Therefore, the select statement from T1 will lock the items and data from the selected rows can not be modified.
+The output of Connection 1 is:
+
+\begin{verbatim}
+dis=# select * from "OPK" where "ID" > 3;
+ ID |  NAME  
+----+--------
+  4 | scooby
+  5 | daphne
+(2 rows)
+\end{verbatim}
+
+\item Compare the state before the transactions with the state after the transactions.
+
+After both transactions, the table has an additional row:
+
+\begin{verbatim}
+dis=# select * from "OPK";
+ ID |  NAME   
+----+---------
+  1 | shaggy
+  2 | fred
+  4 | scooby
+  5 | daphne
+  6 | scrappy
+(5 rows)
+\end{verbatim}
+
+\item What can be observed if Connection 1 commits and execute its SQL command again?
+
+The row added by T2 is visible:
+
+\begin{verbatim}
+ ID |  NAME   
+----+---------
+  4 | scooby
+  5 | daphne
+  6 | scrappy
+(3 rows)
+\end{verbatim}
+
+\item Can we observe a Canonical Synchronization Problem? If yes, explain which one and why it appears.
+
+Phantom read occurs. This means that although T1 locks the data selected by the query, in parallel, rows can be added to the table.
+The set of rows that are satisfying the condition by T1 has changed.
+
+With postgreSQL, if T1 executes the select statement several times before a commit, and T2 adds a row in parallel, the data returned will not change and the added row is not visible for T1.
+
+From the docs: \textit{REPEATABLE READ: All statements of the current transaction can only see rows committed before the first query or data-modification statement was executed in this transaction.}
+\end{itemize}
+
+
 \subsection*{b)}
+
+\begin{itemize}
+\item Want can be observed now? What is the output of Connection 1?
+\item Compare the state before the transactions with the state after the transactions.
+\item Can we observe a Canonical Synchronization Problems? If yes, explain which one and why it appears.
+\end{itemize}
 
 \subsection*{c)}
 
 \subsection*{d)}
+
+\begin{verbatim}
+CREATE TABLE public."MPK"
+(
+    "ID" integer,
+    "NAME" text,
+    PRIMARY KEY ("ID")
+);
+
+ALTER TABLE public."MPK"
+    OWNER to postgres;
+\end{verbatim}
+
+\begin{verbatim}
+INSERT INTO public."MPK"(
+    "ID", "NAME")
+    VALUES (1, 'shaggy');
+
+INSERT INTO public."MPK"(
+    "ID", "NAME")
+    VALUES (2, 'fred');
+	
+INSERT INTO public."MPK"(
+    "ID", "NAME")
+    VALUES (3, 'velma');
+	
+INSERT INTO public."MPK"(
+    "ID", "NAME")
+    VALUES (4, 'scooby');
+	
+INSERT INTO public."MPK"(
+    "ID", "NAME")
+    VALUES (5, 'daphne');
+\end{verbatim}
+
 
 \subsection*{e)}
 
