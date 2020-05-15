@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  13 MAY 2020 18:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.5)  15 MAY 2020 11:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -845,7 +845,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 108.
+Package pdftex.def Info: dbis.pdf used on input line 115.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -864,7 +864,7 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 File: dbis.pdf Graphic file (type pdf)
 
 <use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 300.
+Package pdftex.def Info: dbis.pdf used on input line 149.
 (pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
 
 Overfull \vbox (18.19252pt too high) has occurred while \output is active []
@@ -873,207 +873,29 @@ Overfull \vbox (18.19252pt too high) has occurred while \output is active []
 Overfull \vbox (77.26578pt too high) has occurred while \output is active []
 
 
-[3] <use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 300.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[4] <use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 300.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[5] <use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 300.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[6] <agent_app.png, id=49, 417.56pt x 241.90375pt>
-File: agent_app.png Graphic file (type png)
- <use agent_app.png>
-Package pdftex.def Info: agent_app.png used on input line 328.
-(pdftex.def)             Requested size: 208.77948pt x 120.95157pt.
-
-<agent_db.png, id=51, 804.00375pt x 265.99374pt>
-File: agent_db.png Graphic file (type png)
- <use agent_db.png>
-Package pdftex.def Info: agent_db.png used on input line 329.
-(pdftex.def)             Requested size: 402.0009pt x 132.99654pt.
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 331.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[7] <estate_app.png, id=56, 695.59875pt x 441.65pt>
-File: estate_app.png Graphic file (type png)
- <use estate_app.png>
-Package pdftex.def Info: estate_app.png used on input line 332.
-(pdftex.def)             Requested size: 347.79852pt x 220.82445pt.
-
-<estate_db.png, id=57, 1333.98375pt x 228.855pt>
-File: estate_db.png Graphic file (type png)
- <use estate_db.png>
-Package pdftex.def Info: estate_db.png used on input line 333.
-(pdftex.def)             Requested size: 400.19821pt x 68.65701pt.
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 335.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[8 <./agent_app.png> <./agent_db.png>]
-<contract_app.png, id=63, 396.48125pt x 277.035pt>
-File: contract_app.png Graphic file (type png)
- <use contract_app.png>
-Package pdftex.def Info: contract_app.png used on input line 336.
-(pdftex.def)             Requested size: 198.24013pt x 138.51715pt.
-
-<contract_db.png, id=64, 1187.43625pt x 256.96pt>
-File: contract_db.png Graphic file (type png)
- <use contract_db.png>
-Package pdftex.def Info: contract_db.png used on input line 337.
-(pdftex.def)             Requested size: 474.9661pt x 102.78217pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--338
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 336--338
-
- []
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 338.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[9 <./estate_app.png> <./estate_db.png>] <use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-<use dbis.pdf>
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-File: dbis.pdf Graphic file (type pdf)
-
-<use dbis.pdf>
-Package pdftex.def Info: dbis.pdf used on input line 356.
-(pdftex.def)             Requested size: 62.59596pt x 62.59248pt.
-
-Overfull \vbox (18.19252pt too high) has occurred while \output is active []
-
-
-Overfull \vbox (77.26578pt too high) has occurred while \output is active []
-
-
-[10 <./contract_app.png> <./contract_db.png>] (./dis-template.aux) ) 
+[3] (./dis-template.aux) ) 
 Here is how much of TeX's memory you used:
- 17538 strings out of 493089
- 360386 string characters out of 6134843
- 496676 words of memory out of 5000000
- 20646 multiletter control sequences out of 15000+600000
+ 17505 strings out of 493089
+ 359823 string characters out of 6134843
+ 495676 words of memory out of 5000000
+ 20620 multiletter control sequences out of 15000+600000
  13302 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,24n,81p,559b,624s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local
-/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1000.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/201
-5/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on dis-template.pdf (10 pages, 535271 bytes).
+ 86i,24n,81p,447b,624s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/c
+m-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+cm-super/sfsi1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm
+-super/sfss1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-s
+uper/sfss1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-sup
+er/sfsx1000.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super
+/sfsx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/s
+fsx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfs
+x1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1
+095.pfb>
+Output written on dis-template.pdf (3 pages, 151944 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
