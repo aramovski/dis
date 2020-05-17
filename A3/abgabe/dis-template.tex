@@ -164,10 +164,11 @@ dis=# select * from "OPK";
 ----+---------
   1 | shaggy
   2 | fred
+  3 | velma
   4 | scooby
   5 | daphne
   6 | scrappy
-(5 rows)
+(6 rows)
 \end{verbatim}
 
 \item What can be observed if Connection 1 commits and execute its SQL command again?
@@ -196,13 +197,58 @@ From the docs: \textit{REPEATABLE READ: All statements of the current transactio
 
 \subsection*{b)}
 
+Within the Serializable isolation level, all anomalies are prohibited and concurrent transactions run as they would run sequentially one by one in order.
+
+
 \begin{itemize}
 \item Want can be observed now? What is the output of Connection 1?
+
+The created row from T2 will be added to the table.
+If we SELECT in T1 again before T1 committed and after T2 committed, the added row is not visible.
+If we run T1 after it already committed again, the output is:
+
+\begin{verbatim}
+ ID |  NAME   
+----+---------
+  4 | scooby
+  5 | daphne
+  6 | scrappy
+(3 rows)
+\end{verbatim}
+
 \item Compare the state before the transactions with the state after the transactions.
+
+After both transactions, the table has an additional row:
+
+\begin{verbatim}
+dis=# select * from "OPK";
+ ID |  NAME   
+----+---------
+  1 | shaggy
+  2 | fred
+  3 | velma
+  4 | scooby
+  5 | daphne
+  6 | scrappy
+(6 rows)
+\end{verbatim}
+
 \item Can we observe a Canonical Synchronization Problems? If yes, explain which one and why it appears.
+
+No Canonical Synchronization Problems can be observed.. This is expected as the isolation level Serializable is defined by this behaviour.
+
 \end{itemize}
 
 \subsection*{c)}
+
+\begin{itemize}
+\item In this scenario Connection 2 has to wait until Connection 1 commits. Explain why.
+
+T2 does not have to wait (?)
+
+\item Discuss, what lock can be potentially encountered on the table OPK? Which Connection do the locks belong to?
+
+\end{itemize}
 
 \subsection*{d)}
 
