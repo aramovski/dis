@@ -244,9 +244,14 @@ No Canonical Synchronization Problems can be observed.. This is expected as the 
 \begin{itemize}
 \item In this scenario Connection 2 has to wait until Connection 1 commits. Explain why.
 
-T2 does not have to wait (?)
+For this example, assume T2 wants to change the NAME of ID 4, NAME scooby.
+T2 has the option to change the NAME corresponding to ID 4 to velma. 
+T2 has to wait for T1 because T1 could change the ID from 3 to 4. Note here, that ID is not a primary key so this would be a valid operation.
+If T2 did not wait and T1 did its operation nonetheless, there would be two identical rows, with therefore same "primary key".
 
 \item Discuss, what lock can be potentially encountered on the table OPK? Which Connection do the locks belong to?
+
+There are potentially locks on write operations on all entries of the table from T1.
 
 \end{itemize}
 
@@ -288,6 +293,12 @@ INSERT INTO public."MPK"(
 
 
 \subsection*{e)}
+\begin{itemize}
 
+\item The transactions from c) are repeated with the table MPK. This time, Connection 2 doesn't have to wait for the commit of Connection 1. Explain the behavior.
+
+As described in c) already, the primary key changes the situation drastically.
+T1 would only put a lock onto the one row it is modifying so that T2 can easily access the other one.
+\end{itemize}
 
 \end{document}
