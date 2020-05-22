@@ -1,18 +1,7 @@
-Singleton:
-
-
-Threads
-
-
-Hashtable
-
-
--------------------------------------------------
-
 
 
 Page:
-- store every page in a sigle text file (FileWriter)
+- store every page in a single text file (FileWriter)
 - filename: pageID
 - file content: single line of text with all the information, for example separated by commata
 
@@ -24,12 +13,12 @@ Page:
 
 
 
-Persistant Storage:
+Persistent Storage:
 
 
 
 
-Persistance Manager
+Persistence Manager
 -------------------
 
 - Singleton
@@ -106,7 +95,7 @@ commit(int taid):
 - commits the transaction specified by the given transaction ID.
 
 write(int taid, int pageid, String data):
-- stored to internal buffer of persistance manager
+- stored to internal buffer of persistence manager
 - writes the given data with the given page ID on behalf of the given transaction to the bu􏰃ffer
 - If the given page already exists, its content is replaced completely by the given data
 
