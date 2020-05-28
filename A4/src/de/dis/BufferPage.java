@@ -1,16 +1,22 @@
 package de.dis;
 
-public class Page {
+public class BufferPage {
 
+    private int transactionId;
     private int pageID;
     private int lsn;
     private String data;
 
-    public Page(int pageID, int lsn, String data) {
+    public BufferPage(int transactionId, int pageID, int lsn, String data) {
+        this.transactionId = transactionId;
         this.pageID = pageID;
         this.lsn = lsn;
         this.data = data;
     }
+
+    public int getTransactionId() { return transactionId; }
+
+    public void setTransactionId(int transactionId) { this.transactionId = transactionId; }
 
     public int getPageID() {
         return pageID;
