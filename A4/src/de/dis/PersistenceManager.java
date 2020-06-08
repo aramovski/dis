@@ -2,7 +2,10 @@ package de.dis;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PersistenceManager {
@@ -10,14 +13,44 @@ public class PersistenceManager {
     private static final int BUFFER_THRESHHOLD = 5;
 
     private static PersistenceManager instance;
-    private AtomicInteger transactionID = new AtomicInteger(0);
-    private AtomicInteger logSequence = new AtomicInteger(0);
+    private AtomicInteger transactionID;
+    private AtomicInteger logSequence;
     private Hashtable<Integer, BufferPage> buffer;
     private Hashtable<Integer, Boolean> transactionCommits; //true means commited. false means not yet commited.
 
     private PersistenceManager () {
+        transactionID = new AtomicInteger(getHighestTidFromLog() +1);
+        logSequence = new AtomicInteger(getHighestLsnFromLog()+1);
         buffer = new Hashtable<>();
         transactionCommits = new Hashtable<>();
+    }
+
+    private int getHighestLsnFromLog() {
+        int highest = 0;
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("logfile.log"));
+            for (String line: lines) {
+                int lsn = Integer.parseInt(line.split(",")[0]);
+                highest = Math.max(lsn, highest);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return highest;
+    }
+
+    private int getHighestTidFromLog() {
+        int highest = 0;
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("logfile.log"));
+            for (String line: lines) {
+                int lsn = Integer.parseInt(line.split(",")[1]);
+                highest = Math.max(lsn, highest);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return highest;
     }
 
     public static synchronized PersistenceManager getInstance () {

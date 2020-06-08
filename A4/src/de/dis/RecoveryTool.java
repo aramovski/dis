@@ -34,7 +34,7 @@ public class RecoveryTool {
                     {
                         String page = Files.readAllLines(Paths.get("Page" + pageid + ".data")).get(0);
                         int pageLsn = Integer.parseInt(page.split(",")[0]);
-                        if(pageLsn < lsn)
+                        if(pageLsn <= lsn)
                         {
                             writePage(lsn, pageid, data);
                         }
