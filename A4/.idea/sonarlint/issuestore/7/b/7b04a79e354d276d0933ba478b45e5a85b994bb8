@@ -1,0 +1,8 @@
+
+Vsquid:S1118":Add a private constructor to hide the implicit public one.(Ê¨ÚÚÿÿÿÿÿ
+Bsquid:S1168J"+Return an empty collection instead of null.(¥¹ï
+dsquid:S20954"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(Ø‰’¤úÿÿÿÿ
+?squid:S1148G"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+bsquid:S1192"FDefine a constant instead of duplicating this literal ".data" 3 times.(ëÒü·üÿÿÿÿ
+Bsquid:S1168H"+Return an empty collection instead of null.(¥¹ï
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(³‹¤ºıÿÿÿÿ

@@ -1,0 +1,17 @@
+
+lsquid:S2095‰"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(œ…‰„ÿÿÿÿÿ8Œ™…õ¨.
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ëªè–©.
+osquid:S1192"LDefine a constant instead of duplicating this literal "logfile.log" 3 times.(¬ù„ˆùÿÿÿÿ8Ëªè–©.
+Fsquid:S11483"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Œ™…õ¨.
+fsquid:S2095p"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(¼íºŒ8Œ™…õ¨.
+Hsquid:S5411m"*Use the primitive boolean expression here.(š–°8Œ™…õ¨.
+[
+squid:S106@"9Replace this use of System.out or System.err by a logger.(ÇÑû‰ıÿÿÿÿ8Ëªè–©.
+Fsquid:S1148t"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Ëªè–©.
+Fsquid:S1148%"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Œ™…õ¨.
+ysquid:S1149"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(İ¼Íïÿÿÿÿÿ8Ëªè–©.
+[
+squid:S106U"9Replace this use of System.out or System.err by a logger.(Ü²ê•ûÿÿÿÿ8Œ™…õ¨.
+Wsquid:S2864j"4Iterate over the "entrySet" instead of the "keySet".(È…·úÿÿÿÿ8Œ™…õ¨.
+Fsquid:S1148="#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Œ™…õ¨.
+tsquid:S1149"VReplace the synchronized class "Hashtable" by an unsynchronized one such as "HashMap".(óÄŸ½8Œ™…õ¨.
