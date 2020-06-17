@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -48,20 +51,25 @@ public class MovieService extends MovieServiceBase {
 	 * Create a new MovieService by connecting to MongoDB.
 	 */
 	public MovieService() {
-		// TODO see for example https://mongodb.github.io/mongo-java-driver/3.12/driver/tutorials/
-		// TODO: connect to MongoDB
-		mongo = null;
-		// TODO Select database "imdb"
-		db = null;
+		// see for example https://mongodb.github.io/mongo-java-driver/3.12/driver/tutorials/
+		// connect to MongoDB
+		mongo = MongoClients.create(
+				String.valueOf(new MongoClientURI( "mongodb://root:password@localhost"))
+		);
+
+		// Select database "imdb"
+		db = mongo.getDatabase("imdb");
+
 		// Create a GriFS FileSystem Object using the db
 		fs = GridFSBuckets.create(db);
 		createSampleImage();
+
 		// Print the name of all collections in that database
 		printCollections();
 
-		// TODO Take "movies" and "tweets" collection
-		movies = null;
-		tweets = null;
+		// Take "movies" and "tweets" collection
+		movies = db.getCollection("movies");
+		tweets = db.getCollection("tweets");
 
 		// If database isn't filled (has less than 1000 documents) delete
 		// everything and fill it
