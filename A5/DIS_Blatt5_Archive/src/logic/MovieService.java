@@ -88,8 +88,8 @@ public class MovieService extends MovieServiceBase {
 	 * @return the matching DBObject
 	 */
 	public Document findMovieByTitle(String title) {
-		//TODO : implement
-		Document result = null;
+		//implement
+		Document result = movies.find(eq("title", title)).first();
 		return result;
 	}
 
@@ -110,8 +110,10 @@ public class MovieService extends MovieServiceBase {
 	 * @return the FindIterable for the query
 	 */
 	public FindIterable<Document> getBestMovies(int minVotes, double minRating, int limit) {
-		//TODO : implement
-		FindIterable<Document>  result = null;
+		//implement
+		FindIterable<Document> result = movies.find(and(
+				gte("rating", minRating),
+				gte("votes", minVotes))).limit(limit);
 		return result;
 	}
 
@@ -127,8 +129,9 @@ public class MovieService extends MovieServiceBase {
 	 */
 	public FindIterable<Document> getByGenre(String genreList, int limit) {
 		List<String> genres = Arrays.asList(genreList.split(","));
-		//TODO : implement
-		FindIterable<Document>  result = null;
+		//implement
+		genres.replaceAll(String::trim); // remove white space
+		FindIterable<Document>  result = movies.find(all("genre", genres)).limit(limit);
 		return result;
 	}
 
