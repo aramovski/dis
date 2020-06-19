@@ -1,5 +1,7 @@
 package logic;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
@@ -10,6 +12,7 @@ import java.util.regex.Pattern;
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -79,7 +82,6 @@ public class MovieService extends MovieServiceBase {
 	}
 
 
-
 	/**
 	 * Find a movie by title. Only return one match.
 	 * 
@@ -92,7 +94,6 @@ public class MovieService extends MovieServiceBase {
 		Document result = movies.find(eq("title", title)).first();
 		return result;
 	}
-
 
 	/**
 	 * Find the best movies, i.e. those that have a rating greater minRating and
@@ -148,9 +149,10 @@ public class MovieService extends MovieServiceBase {
 	 * @return the FindIterable for the query
 	 */
 	public FindIterable<Document> searchByPrefix(String titlePrefix, int limit) {
-		//TODO : implement
-		Document prefixQuery = null;
-		FindIterable<Document> result = null;
+		//implement
+		FindIterable<Document> result = movies.find(
+				regex("title", "^"+titlePrefix, "i"))
+				.limit(limit);
 		return result;
 	}
 
@@ -161,8 +163,8 @@ public class MovieService extends MovieServiceBase {
 	 * @return the FindIterable for the query
 	 */
 	public FindIterable getTweetedMovies() {
-		//TODO : implement
-		FindIterable<Document>  result = null;
+		//implement
+		FindIterable<Document> result = movies.find(exists("tweets"));
 		return result;
 	}
 
@@ -176,12 +178,12 @@ public class MovieService extends MovieServiceBase {
 	 *            the comment to save
 	 */
 	public void saveMovieComment(String id, String comment) {
-		// TODO implement
-		Document query = null;
-		Document update = null;
-		movies.updateOne(query, update);
+		//implement
+		movies.updateOne(
+				eq("_id", id),
+				new Document("$set", new Document("comment", comment))
+		);
 	}
-
 
 	/**
 	 * Find all Movies, that have tweets that contain a given keyword. Solve
@@ -208,8 +210,10 @@ public class MovieService extends MovieServiceBase {
 	 * @return the FindIterable for the query
 	 */
 	public FindIterable getByTweetsKeywordRegex(String keyword, int limit) {
-		//TODO : implement
-		FindIterable<Document>  result = null;
+		//implement
+		FindIterable<Document>  result = movies.find(
+				regex("tweets.text", ".*"+keyword+".*", "i"))
+				.limit(limit);
 		return result;
 	}
 
@@ -229,9 +233,8 @@ public class MovieService extends MovieServiceBase {
 		// Create a text index on the "text" property of tweets
 		tweets.createIndex(new Document("text", "text").append("user.name", "text"));
 		
-		// TODO: implement
-		FindIterable<Document> result = null;
-		
+		//implement
+		FindIterable<Document> result = tweets.find(Filters.text(query));
 		return result;
 	}
 
@@ -243,9 +246,9 @@ public class MovieService extends MovieServiceBase {
 	 *            maximum number of records to be returned
 	 * @return the FindIterable for the query
 	 */
-	public FindIterable<Document>  getNewestTweets(int limit) {
-		//TODO : implement
-		FindIterable<Document>  result = null;
+	public FindIterable<Document> getNewestTweets(int limit) {
+		//TODO : implement: does not make sense... use "created_at" attribute?
+		FindIterable<Document> result = tweets.find().sort(Sorts.descending("id")).limit(limit);
 		return result;
 	}
 
@@ -257,16 +260,16 @@ public class MovieService extends MovieServiceBase {
 	 *            maximum number of records to be returned
 	 * @return the FindIterable for the query
 	 */
-	public FindIterable<Document>  getGeotaggedTweets(int limit) {
-		//TODO : implement
-		FindIterable<Document>  result = null;
+	public FindIterable<Document> getGeotaggedTweets(int limit) {
+		//implement
+		FindIterable<Document> result = tweets.find(exists("geo.coordinates"));
 		return result;
 	}
 
 	// GridFS Interaction
 	
 	/**
-	 * Saves a file to GridFS. The file has the given name and is filles using
+	 * Saves a file to GridFS. The file has the given name and is filled using
 	 * the provided InputStream. The given Content-Type has to be set on the
 	 * file.
 	 * 
@@ -275,9 +278,13 @@ public class MovieService extends MovieServiceBase {
 	 * @param contentType
 	 */
 	public void saveFile(String name, InputStream inputStream, String contentType) {
-		GridFSUploadOptions options = new GridFSUploadOptions().chunkSizeBytes(358400).metadata(new Document("contentType", contentType));
-		// TODO IMPLEMENT
-	    ObjectId fileId = null; 
+		GridFSUploadOptions options = new GridFSUploadOptions()
+				.chunkSizeBytes(358400)
+				.metadata(new Document("contentType", contentType));
+
+		//IMPLEMENT
+	    ObjectId fileId = fs.uploadFromStream(name, inputStream, options);
+	    System.out.println("Saved File " + fileId);
 	}
 
 	/**
@@ -289,10 +296,10 @@ public class MovieService extends MovieServiceBase {
 	 * @return The retrieved GridFS File
 	 */
 	public GridFSFile getFile(String name) {
-		// TODO: Implement
-		GridFSFile file = null;
+		//Implement
+		GridFSFile file = fs.find(Filters.eq("filename", name)).first();
 		if (file == null) {
-			file = null;
+			file = fs.find(Filters.eq("filename", "sample.png")).first();
 		}
 		return file;
 	}
@@ -374,7 +381,7 @@ public class MovieService extends MovieServiceBase {
 	 *            the radius to search in
 	 * @return
 	 */
-	public FindIterable<Document>  getTweetsNear(double lat, double lng, int radiusKm) {
+	public FindIterable<Document> getTweetsNear(double lat, double lng, int radiusKm) {
 		tweets.createIndex(Indexes.geo2dsphere("coordinates"));
 		
 		Document pointQuery = new Document("coordinates", new Document("$near",
