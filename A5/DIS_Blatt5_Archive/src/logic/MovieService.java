@@ -247,7 +247,7 @@ public class MovieService extends MovieServiceBase {
 	 * @return the FindIterable for the query
 	 */
 	public FindIterable<Document> getNewestTweets(int limit) {
-		//TODO : implement: does not make sense... use "created_at" attribute?
+		//implement: use "created_at" attribute?
 		FindIterable<Document> result = tweets.find().sort(Sorts.descending("id")).limit(limit);
 		return result;
 	}
