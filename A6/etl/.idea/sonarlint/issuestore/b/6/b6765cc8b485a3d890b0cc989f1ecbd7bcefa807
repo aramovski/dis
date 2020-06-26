@@ -1,0 +1,7 @@
+
+Ysquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8³­Û‰¯.
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ù¿éûÿÿÿÿ8¦¿»‰¯.
+]squid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8³­Û‰¯.
+Ksquid:S1481"(Remove this unused "con" local variable.(³õ‰¯úÿÿÿÿ8ÙˆÚ‰¯.
+gsquid:UselessImportCheck"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8³­Û‰¯.

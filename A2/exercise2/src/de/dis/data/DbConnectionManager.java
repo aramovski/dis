@@ -28,7 +28,7 @@ public class DbConnectionManager {
 			// Holen der Einstellungen aus der db.properties Datei
 			Properties properties = new Properties();
 			// System.out.println(new File(".").getAbsolutePath());
-			FileInputStream stream = new FileInputStream(new File("./A2/exercise2/db.properties"));
+			FileInputStream stream = new FileInputStream(new File("./db.properties"));
 			properties.load(stream);
 			stream.close();
 
