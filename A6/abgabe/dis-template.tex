@@ -1,0 +1,62 @@
+\documentclass[ngerman]{dis-template-add}
+
+
+\renewcommand{\Aufgabenblatt}{6}
+\renewcommand{\Ausgabedatum}{23. Juni 2020}
+\renewcommand{\Abgabedatum}{7. Juli 2020}
+\renewcommand{\Gruppe}{Simon Weidmann, Aram Yesildeniz}
+\renewcommand{\STiNEGruppe}{14}
+
+
+\begin{document}
+
+
+\section*{6.1 ETL Process}
+
+\subsection*{Schme Decisions}
+
+\begin{center}
+
+%TODO change tables
+Apartment \\
+\begin{tabular}{ c | c | c | c | c | c | c | c | c | c | c | c }
+ \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floor & Rent & Rooms & Balcony & Kitchen & \dashuline{Manager = EsateAgent.Login} \\
+ \hline
+  & & & & & & & & & & &  \\
+\end{tabular}
+
+\end{center}
+
+\subsection*{CSV Transformation}
+
+
+\subsection*{Log Outputs}
+
+\subsubsection*{Amount of Imported Tuples}
+
+\subsubsection*{Schema Creation}
+
+
+
+\section*{6.2 Data Analysis}
+
+\subsection*{Database Queries}
+
+%TODO change
+\begin{verbatim}
+CREATE DATABASE dis
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+\end{verbatim}
+
+
+\subsection*{Log Output}
+
+\subsubsection*{Lowest Granularity Level}
+
+\subsubsection*{Highest Granularity Level}
+
+
+\end{document}
