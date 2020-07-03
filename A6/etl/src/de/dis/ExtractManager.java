@@ -4,16 +4,19 @@ import de.dis.entities.Geography;
 import de.dis.entities.Product;
 import de.dis.entities.Time;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ExtractManager {
 
     private Connection dbConnection;
+    private TransformManager transformManager;
 
     private List<Product> productList;
     private List<Geography> geographyList;
@@ -21,6 +24,7 @@ public class ExtractManager {
 
     public ExtractManager(Connection dbConnection) {
         this.dbConnection = dbConnection;
+        this.transformManager = new TransformManager();
         this.productList = new ArrayList<>();
         this.geographyList = new ArrayList<>();
         this.timeList = new ArrayList<>();
@@ -154,7 +158,27 @@ public class ExtractManager {
         geographyList.forEach(geography -> System.out.println(geography.toString()));
     }
 
-
     public void extractTimes() {
+        // extract date from .csv file
+        // System.out.println(new File(".").getAbsolutePath());
+        String csvFile = "./src/resources/sales.csv";
+        String cvsSplitBy = ";";
+        String line = "";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] row = line.split(cvsSplitBy);
+                String date = row[0];
+                Time time = transformManager.getTimeFromDate(date);
+                if (!timeList.contains(time) && time != null) timeList.add(time);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTimes() {
+        System.out.println("\n========== Times ==========\n");
+        timeList.forEach(time -> System.out.println(time.toString()));
     }
 }

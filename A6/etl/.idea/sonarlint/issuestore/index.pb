@@ -14,3 +14,15 @@ S
 etl.iml,1/6/16a6e562d131253db95f52be99cd960cf5e30ac1
 M
 src/de/dis/SchemaManager.java,8/0/803ea1803a9e2d0f9b70f4908da32c259e6898a2
+M
+src/de/dis/entities/Time.java,e/4/e4c20ce4f3e95c0d0147fc67f7c415d907fcbab8
+R
+"src/de/dis/entities/Geography.java,e/1/e1c62980f8c2fb95a96a881ed9fe17aca9f1b555
+P
+ src/de/dis/entities/Product.java,d/1/d11bc2d90229037ced34b44f504329e381b237f4
+N
+src/de/dis/ExtractManager.java,0/2/028408b8ef825fc85a2ff51885ce973d6ad45a99
+P
+ src/de/dis/TransformManager.java,c/a/caecf3c21931c813bc86750febcfec48af7450ba
+G
+src/resources/sales.csv,4/8/48dd8c70558764447b1b6f1f0f98c87dd93c75ab
