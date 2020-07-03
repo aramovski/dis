@@ -12,3 +12,5 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 7
 etl.iml,1/6/16a6e562d131253db95f52be99cd960cf5e30ac1
+M
+src/de/dis/SchemaManager.java,8/0/803ea1803a9e2d0f9b70f4908da32c259e6898a2

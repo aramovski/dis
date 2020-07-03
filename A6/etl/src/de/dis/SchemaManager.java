@@ -10,10 +10,19 @@ public class SchemaManager {
         this.dbConnection = dbConnection;
     }
 
-    public void createProductDimension() {
+    public void createDimensions() {
+        System.out.println("Creating Product Dimension Table");
+        createProductDimension();
+        System.out.println("Creating Time Dimension Table");
+        createTimeDimension();
+        System.out.println("Creating Geography Dimension Table");
+        createGeographyDimension();
+    }
+
+    private void createProductDimension() {
         String createSQL = "CREATE TABLE PRODUCT_DIMENSION"
                 + "("
-                + "id integer NOT NULL,"
+                + "id serial NOT NULL,"
                 + "article_id integer NOT NULL,"
                 + "article_name character varying(255) NOT NULL,"
                 + "productgroup_id integer NOT NULL,"
@@ -29,10 +38,10 @@ public class SchemaManager {
         executeCreateQuery(createSQL);
     }
 
-    public void createTimeDimension() {
+    private void createTimeDimension() {
         String createSQL = "CREATE TABLE TIME_DIMENSION"
                 + "("
-                + "id integer NOT NULL,"
+                + "id serial NOT NULL,"
                 + "day integer NOT NULL,"
                 + "month integer NOT NULL,"
                 + "year integer NOT NULL,"
@@ -43,10 +52,10 @@ public class SchemaManager {
         executeCreateQuery(createSQL);
     }
 
-    public void createGeographyDimension() {
+    private void createGeographyDimension() {
         String createSQL = "CREATE TABLE GEOGRAPHY_DIMENSION"
                 + "("
-                + "id integer NOT NULL,"
+                + "id serial NOT NULL,"
                 + "shop_id integer NOT NULL,"
                 + "shop_name character varying(255) NOT NULL,"
                 + "city_id integer NOT NULL,"
@@ -62,6 +71,8 @@ public class SchemaManager {
     }
 
     public void createFactTable() {
+        System.out.println("Creating Fact Table");
+
         String createSQL = "CREATE TABLE FACT_TABLE"
                 + "("
                 + "product_id integer NOT NULL,"
