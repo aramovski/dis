@@ -1,5 +1,6 @@
 package de.dis;
 
+import de.dis.entities.Fact;
 import de.dis.entities.Geography;
 import de.dis.entities.Product;
 import de.dis.entities.Time;
@@ -11,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ExtractManager {
 
@@ -21,6 +21,7 @@ public class ExtractManager {
     private List<Product> productList;
     private List<Geography> geographyList;
     private List<Time> timeList;
+    private List<Fact> factList;
 
     public ExtractManager(Connection dbConnection) {
         this.dbConnection = dbConnection;
@@ -192,5 +193,9 @@ public class ExtractManager {
     public void showTimes() {
         System.out.println("\n========== Times ==========\n");
         timeList.forEach(time -> System.out.println(time.toString()));
+    }
+
+    public void extractFacts() {
+        //TODO iterate again over csv to get sold and revenue?
     }
 }

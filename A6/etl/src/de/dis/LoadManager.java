@@ -117,6 +117,19 @@ public class LoadManager {
 
     // populate facts table
     public void loadFacts() {
+        try {
+            String insertSQL = "INSERT INTO fact_table(product_id, time_id, geography_id, sold, revenue) VALUES (?, ?, ?, ?, ?);";
+
+            PreparedStatement pstmt = dbConnection.prepareStatement(insertSQL,
+                    Statement.RETURN_GENERATED_KEYS);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+
+            // System.out.println("Fact [" + fact.toString() + "] stored in Database\n");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

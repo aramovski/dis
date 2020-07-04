@@ -26,3 +26,7 @@ P
  src/de/dis/TransformManager.java,c/a/caecf3c21931c813bc86750febcfec48af7450ba
 G
 src/resources/sales.csv,4/8/48dd8c70558764447b1b6f1f0f98c87dd93c75ab
+M
+src/de/dis/entities/Fact.java,2/a/2a597fb4036d33917ff64f8fbf8f1a9cdc4fcd57
+K
+src/de/dis/LoadManager.java,d/0/d0f448cb4f544892951c3a7625cb86a8e6617b78
