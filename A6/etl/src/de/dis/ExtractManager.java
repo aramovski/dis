@@ -30,6 +30,18 @@ public class ExtractManager {
         this.timeList = new ArrayList<>();
     }
 
+    public List<Product> getProductList() {
+        return this.productList;
+    }
+
+    public List<Geography> getGeographyList() {
+        return this.geographyList;
+    }
+
+    public List<Time> getTimeList() {
+        return this.timeList;
+    }
+
     public void extractProducts() {
 
         //TODO use only one join sql for all the merging as in geography extraction

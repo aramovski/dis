@@ -19,6 +19,7 @@ public class Main {
         schemaManager.createFactTable();
 
         // Extract Data from DB and csv
+        System.out.println("\n############# EXTRACTION #############\n");
         ExtractManager extractManager = new ExtractManager(dbConnection);
         extractManager.extractProducts();
         extractManager.showProducts();
@@ -28,5 +29,15 @@ public class Main {
         extractManager.showTimes();
 
         // TODO: extract sold and revenue from csv
+
+        // Data is now extracted and stored in extract manager
+        // Load this data into database
+        System.out.println("\n############# LOADING #############\n");
+        LoadManager loadManager = new LoadManager(dbConnection, extractManager);
+        loadManager.loadProducts();
+        loadManager.loadGeographies();
+        loadManager.loadTimes();
+
+        //TODO create fact table.  revenue and sold has to be connected with productId, geography id and time id
     }
 }

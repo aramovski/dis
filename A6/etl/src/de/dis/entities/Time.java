@@ -43,6 +43,10 @@ public class Time {
         this.year = year;
     }
 
+    public String getTimeAsDate() {
+        return this.getDay() + "." + this.getMonth() + "." + this.getYear();
+    }
+
     @Override
     public String toString() {
         String string = "Day: " + this.getDay() + "\n"
