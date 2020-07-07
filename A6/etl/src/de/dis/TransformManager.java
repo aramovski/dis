@@ -12,6 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
 public class TransformManager {
 
     private List<Product> productList;
@@ -78,7 +83,6 @@ public class TransformManager {
         result.setTimeId(this.getTimeIdForDate(datestring));
         result.setProductId(this.getProductIdForArticle(articlestring));
         result.setGeographyId(this.getGeoIdForShop(shopstring));
-
         return result;
     }
 
@@ -96,4 +100,6 @@ public class TransformManager {
         //TODO
         return 0;
     }
+
+
 }
