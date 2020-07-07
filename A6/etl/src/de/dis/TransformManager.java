@@ -4,18 +4,9 @@ import de.dis.entities.Fact;
 import de.dis.entities.Geography;
 import de.dis.entities.Product;
 import de.dis.entities.Time;
-import de.dis.entities.Time;
-
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.List;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TransformManager {
 
@@ -78,27 +69,67 @@ public class TransformManager {
         String revenuestring = fact_entry[4];
 
         Fact result = new Fact();
-        result.setRevenue(Double.parseDouble(revenuestring));
-        result.setSold(Integer.parseInt(soldstring));
+        result.setRevenue(Double.parseDouble(revenuestring.replace(",", ".")));
+        try {
+            result.setSold(Integer.parseInt(soldstring));
+        } catch (NumberFormatException e) {
+            System.out.println("Data [" + Arrays.toString(fact_entry) + "] invalid. Will be ignored.");
+        }
         result.setTimeId(this.getTimeIdForDate(datestring));
         result.setProductId(this.getProductIdForArticle(articlestring));
         result.setGeographyId(this.getGeoIdForShop(shopstring));
+
         return result;
     }
 
     private int getGeoIdForShop(String shopstring) {
-        Geography geo = geographyList.stream().filter(g -> g.getShopName() == shopstring).findFirst().get();
-        return geo.getId();
+        // normal case
+        try {
+            Geography geo = geographyList.stream().filter(g -> g.getShopName() == shopstring).findFirst().get();
+            return geo.getId();
+        } catch (NoSuchElementException e) { }
+        // ü
+        try {
+            Geography geo = geographyList.stream().filter(g -> g.getShopName().replaceAll("\\p{Sc}", "ü") == shopstring).findFirst().get();
+            return geo.getId();
+        } catch (NoSuchElementException e) { }
+        return -1;
     }
 
     private int getProductIdForArticle(String articlestring) {
-        Product prod = productList.stream().filter(p -> p.getArticleName() == articlestring).findFirst().get();
-        return prod.getId();
+        String replacement = "\\p{Sc}";
+        // normal case
+        try {
+            Product prod = productList.stream().filter(p -> p.getArticleName().equals(articlestring)).findFirst().get();
+            return prod.getId();
+        } catch (NoSuchElementException e) { }
+        // Ö
+        try {
+            Product prod = productList.stream().filter(p -> p.getArticleName().replaceAll(replacement, "Ö").equals(articlestring)).findFirst().get();
+            return prod.getId();
+        } catch (NoSuchElementException e) { }
+        // ö
+        try {
+            Product prod = productList.stream().filter(p -> p.getArticleName().replaceAll(replacement, "ö").equals(articlestring)).findFirst().get();
+            return prod.getId();
+        } catch (NoSuchElementException e) { }
+        // Ü
+        try {
+            Product prod = productList.stream().filter(p -> p.getArticleName().replaceAll(replacement, "Ü").equals(articlestring)).findFirst().get();
+            return prod.getId();
+        } catch (NoSuchElementException e) { }
+        // ü
+        try {
+            Product prod = productList.stream().filter(p -> p.getArticleName().replaceAll(replacement, "ü").equals(articlestring)).findFirst().get();
+            return prod.getId();
+        } catch (NoSuchElementException e) { }
+        return -1;
     }
 
     private int getTimeIdForDate(String datestring) {
-        //TODO
-        return 0;
+        Time dateFromCsv = this.getTimeFromDate(datestring);
+        Time time = timeList.stream().filter(t -> t.equals(dateFromCsv)).findFirst().get();
+        return time.getId();
     }
 
 

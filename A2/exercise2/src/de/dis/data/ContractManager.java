@@ -57,7 +57,6 @@ public class ContractManager {
         try {
             PreparedStatement pstmt = con.prepareStatement(selectSQL);
             ResultSet rs = pstmt.executeQuery();
-
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             System.out.println("=====================================================");

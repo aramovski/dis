@@ -1,13 +1,11 @@
 package de.dis;
 
+import de.dis.entities.Fact;
 import de.dis.entities.Geography;
 import de.dis.entities.Product;
 import de.dis.entities.Time;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 public class LoadManager {
@@ -95,17 +93,19 @@ public class LoadManager {
 
         timeList.forEach(time -> {
             try {
-                String insertSQL = "INSERT INTO public.time_dimension(day, month, year, quarter) VALUES (?, ?, ?, ?);";
+                String insertSQL = "INSERT INTO public.time_dimension(day, month, year, quarter) VALUES (?, ?, ?, ?) RETURNING id;";
 
-                PreparedStatement pstmt = dbConnection.prepareStatement(insertSQL,
-                        Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement pstmt = dbConnection.prepareStatement(insertSQL);
 
                 pstmt.setInt(1, time.getDay());
                 pstmt.setInt(2, time.getMonth());
                 pstmt.setInt(3, time.getYear());
                 pstmt.setInt(4, time.getQuarter());
 
-                pstmt.executeUpdate();
+                ResultSet rs = pstmt.executeQuery();
+                rs.next();
+                time.setId(rs.getInt(1));
+
                 pstmt.close();
 
                 System.out.println("Time [" + time.getTimeAsDate() + "] stored in Database\n");
@@ -117,19 +117,30 @@ public class LoadManager {
 
     // populate facts table
     public void loadFacts() {
-        try {
-            String insertSQL = "INSERT INTO fact_table(product_id, time_id, geography_id, sold, revenue) VALUES (?, ?, ?, ?, ?);";
 
-            PreparedStatement pstmt = dbConnection.prepareStatement(insertSQL,
-                    Statement.RETURN_GENERATED_KEYS);
+        System.out.println("\n========== Facts ==========\n");
+        List<Fact> factList = extractManager.getFactList();
 
-            pstmt.executeUpdate();
-            pstmt.close();
+        factList.forEach(fact -> {
+            try {
+                String insertSQL = "INSERT INTO fact_table(product_id, time_id, geography_id, sold, revenue) VALUES (?, ?, ?, ?, ?);";
 
-            // System.out.println("Fact [" + fact.toString() + "] stored in Database\n");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                PreparedStatement pstmt = dbConnection.prepareStatement(insertSQL,
+                        Statement.RETURN_GENERATED_KEYS);
 
+                pstmt.setInt(1, fact.getProductId());
+                pstmt.setInt(2, fact.getTimeId());
+                pstmt.setInt(3, fact.getGeographyId());
+                pstmt.setInt(4, fact.getSold());
+                pstmt.setDouble(5, fact.getRevenue());
+
+                pstmt.executeUpdate();
+                pstmt.close();
+
+                System.out.println("Fact [(" + fact.getSold() + ", " + fact.getRevenue() +")] stored in Database\n");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

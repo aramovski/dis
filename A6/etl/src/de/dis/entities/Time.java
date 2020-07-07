@@ -2,6 +2,7 @@ package de.dis.entities;
 
 public class Time {
 
+    private int id;
     private int day;
     private int month;
     private int quarter;
@@ -10,6 +11,10 @@ public class Time {
     public Time() {
 
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public int getDay() {
         return day;

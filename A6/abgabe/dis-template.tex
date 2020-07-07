@@ -13,44 +13,109 @@
 
 \section*{6.1 ETL Process}
 
-\subsection*{Schme Decisions}
+\subsection*{Scheme Decisions}
 
-\begin{center}
+We use a Star Schema with the dimensions Product, Geography and Time.
 
-%TODO change tables
-Apartment \\
-\begin{tabular}{ c | c | c | c | c | c | c | c | c | c | c | c }
- \soliduline{ID} & City & PC & Str. & Str.Nr. & SA & Floor & Rent & Rooms & Balcony & Kitchen & \dashuline{Manager = EsateAgent.Login} \\
- \hline
-  & & & & & & & & & & &  \\
-\end{tabular}
+The Product Dimension includes:
+id, article-id, article-name, productgroup-id, productgroup-name, productfamily-id, productfamily-name, productcategory-id, productcategory-name and price.
 
-\end{center}
+The Geography Dimension includes:
+id, shop-id, shop-name, city-id, city-name, region-id, region-name, country-id, and country-name.
+
+The Time Dimension includes:
+id, day, month, year and quarter.
+	
+The Fact Table consists of the keys of the dimension tables as well as the measures Sold and Revenue.
+
 
 \subsection*{CSV Transformation}
+
+\begin{itemize}
+\item The Date string "01.01.2020" needs to be split up into its parts Day, Month, Year and Quarter.
+\item The comma in revenue needs to be replaces by a dot
+\item Corrupt data needs to be ignored
+\end{itemize}
 
 
 \subsection*{Log Outputs}
 
 \subsubsection*{Amount of Imported Tuples}
 
+Time Dimension \\
+\includegraphics[scale=0.3]{time.png}
+
+Product Dimension \\
+\includegraphics[scale=0.3]{product.png}
+
+Geo Dimension \\
+\includegraphics[scale=0.3]{geo.png}
+
+
+
 \subsubsection*{Schema Creation}
 
+\begin{verbatim}
+String createSQL = "CREATE TABLE PRODUCT_DIMENSION"
+ + "("
+ + "id serial NOT NULL,"
+ + "article_id integer NOT NULL,"
+ + "article_name character varying(255) NOT NULL,"
+ + "productgroup_id integer NOT NULL,"
+ + "productgroup_name character varying(255) NOT NULL,"
+ + "productfamily_id integer NOT NULL,"
+ + "productfamily_name character varying(255) NOT NULL,"
+ + "productcategory_id integer NOT NULL,"
+ + "productcategory_name character varying(255) NOT NULL,"
+ + "price double precision NOT NULL,"
+ + "PRIMARY KEY (id)"
+ + ")";
+                
+String createSQL = "CREATE TABLE TIME_DIMENSION"
+ + "("
+ + "id serial NOT NULL,"
+ + "day integer NOT NULL,"
+ + "month integer NOT NULL,"
+ + "year integer NOT NULL,"
+ + "quarter integer NOT NULL,"
+ + "PRIMARY KEY (id)"
+ + ")";
+                
+String createSQL = "CREATE TABLE GEOGRAPHY_DIMENSION"
++ "("
++ "id serial NOT NULL,"
++ "shop_id integer NOT NULL,"
++ "shop_name character varying(255) NOT NULL,"
++ "city_id integer NOT NULL,"
++ "city_name character varying(255) NOT NULL,"
++ "region_id integer NOT NULL,"
++ "region_name character varying(255) NOT NULL,"
++ "country_id integer NOT NULL,"
++ "country_name character varying(255) NOT NULL,"
++ "PRIMARY KEY (id)"
++ ")";
+                
+                
+String createSQL = "CREATE TABLE FACT_TABLE"
++ "("
++ "product_id integer NOT NULL,"
++ "time_id integer NOT NULL,"
++ "geography_id integer NOT NULL,"
++ "sold integer NOT NULL,"
++ "revenue numeric(10, 2) NOT NULL,"
++ "PRIMARY KEY (product_id, time_id, geography_id),"
++ "FOREIGN KEY (product_id) REFERENCES PRODUCT_DIMENSION(id),"
++ "FOREIGN KEY (time_id) REFERENCES TIME_DIMENSION(id),"
++ "FOREIGN KEY (geography_id) REFERENCES GEOGRAPHY_DIMENSION(id)"
++ ")";
+\end{verbatim}
 
 
 \section*{6.2 Data Analysis}
 
+TBD
+
 \subsection*{Database Queries}
-
-%TODO change
-\begin{verbatim}
-CREATE DATABASE dis
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    CONNECTION LIMIT = -1;
-\end{verbatim}
-
 
 \subsection*{Log Output}
 

@@ -34,10 +34,11 @@ public class Main {
         // Load this data into database
         System.out.println("\n############# LOADING #############\n");
         LoadManager loadManager = new LoadManager(dbConnection, extractManager);
-//        loadManager.loadProducts();
-//        loadManager.loadGeographies();
-//        loadManager.loadTimes();
+        loadManager.loadProducts();
+        loadManager.loadGeographies();
+        loadManager.loadTimes();
 
         extractManager.extractFacts();
+        loadManager.loadFacts();
     }
 }

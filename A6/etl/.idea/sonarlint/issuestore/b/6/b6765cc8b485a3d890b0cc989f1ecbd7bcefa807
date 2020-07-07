@@ -1,10 +1,9 @@
 
-]squid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8Ûî˜Š¯.
-gsquid:UselessImportCheck"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8Ûî˜Š¯.
-Psquid:S1135"2Complete the task associated to this TODO comment.(»Ç„Ë8¯şÓ«±.
-Ysquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8Ûî˜Š¯.
-[
-squid:S106#"9Replace this use of System.out or System.err by a logger.(òø¦üÿÿÿÿ8İ”ŠÒ±.
 [
 squid:S106"9Replace this use of System.out or System.err by a logger.(ûäÿßûÿÿÿÿ8¸Ï‰Ò±.
-Usquid:S1135)"2Complete the task associated to this TODO comment.(°µ¤òúÿÿÿÿ8ÀıËÒ±.
+]squid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8Ûî˜Š¯.
+[
+squid:S106#"9Replace this use of System.out or System.err by a logger.(òø¦üÿÿÿÿ8İ”ŠÒ±.
+gsquid:UselessImportCheck"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8Ûî˜Š¯.
+Ysquid:UselessImportCheck"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8Ûî˜Š¯.
+Psquid:S1135"2Complete the task associated to this TODO comment.(»Ç„Ë8¯şÓ«±.
