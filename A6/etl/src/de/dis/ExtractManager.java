@@ -25,10 +25,11 @@ public class ExtractManager {
 
     public ExtractManager(Connection dbConnection) {
         this.dbConnection = dbConnection;
-        this.transformManager = new TransformManager();
         this.productList = new ArrayList<>();
         this.geographyList = new ArrayList<>();
         this.timeList = new ArrayList<>();
+        this.factList = new ArrayList<>();
+        this.transformManager = new TransformManager(getTimeList(), getGeographyList() ,getProductList());
     }
 
     public List<Product> getProductList() {
@@ -196,6 +197,23 @@ public class ExtractManager {
     }
 
     public void extractFacts() {
-        //TODO iterate again over csv to get sold and revenue?
+        //TODO iterate only once over csv...
+        String csvFile = "./src/resources/sales.csv";
+        String cvsSplitBy = ";";
+        String line = "";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] fact_entry = line.split(cvsSplitBy);
+
+                // skip titles
+                if (fact_entry[0].equals("Date")) continue;
+
+                Fact fact = transformManager.getFactFromCsv(fact_entry);
+                if (!factList.contains(fact) && fact != null) factList.add(fact);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

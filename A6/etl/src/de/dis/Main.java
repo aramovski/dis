@@ -34,10 +34,10 @@ public class Main {
         // Load this data into database
         System.out.println("\n############# LOADING #############\n");
         LoadManager loadManager = new LoadManager(dbConnection, extractManager);
-        loadManager.loadProducts();
-        loadManager.loadGeographies();
-        loadManager.loadTimes();
+//        loadManager.loadProducts();
+//        loadManager.loadGeographies();
+//        loadManager.loadTimes();
 
-        //TODO create fact table.  revenue and sold has to be connected with productId, geography id and time id
+        extractManager.extractFacts();
     }
 }
