@@ -28,7 +28,10 @@ public class DbConnectionManager {
             // Holen der Einstellungen aus der db.properties Datei
             Properties properties = new Properties();
             //System.out.println(new File(".").getAbsolutePath());
-            FileInputStream stream = new FileInputStream(new File("./db.properties"));
+            //File propfile = new File("./db.properties");
+            File propfile = new File("etl/db.properties");
+            System.out.println(propfile.getAbsolutePath());
+            FileInputStream stream = new FileInputStream(propfile);
             properties.load(stream);
             stream.close();
 
