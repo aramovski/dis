@@ -13,12 +13,36 @@
 
 \section*{Report}
 
-\subsection*{How the algorithm and software works}
+\section{How the algorithm and software works}
+
+See in the lower part of Apriori.java.
+
+Before the algorithm, we parse all the transactions into a list.
+
+First, the frequent 1-itemsets are being fetched from the transactions.
+Then they are filtered using MIN\_SUP.
+
+Then we loop for the next steps:
+We generate candidates given the algorithm from the extra slides, slide 7, including pruning.
+
+Then we measure how well they are supported.
+Then we kick out all those under the support threshold.
+
+We loop until one step has an empty result.
  
-\subsection*{List how many frequent itemsets you obtained containing {one, two, three, ...} items.}Example: itemsets with 1 item: 120, itemsets with 2 items: 30, ... , itemsets with 5 items: 1
+\section{List how many frequent itemsets you obtained containing {one, two, three, ...} items.}
+
+\begin{center}
+\begin{tabular}{ c | c }
+ 1 & 379  \\ 
+ 2 & 11  \\  
+ 3 & 1     
+\end{tabular}
+\end{center}
  
-\subsection*{Provide the found frequent itemsets containing two or more items together with their computed support value.}
-%Example: [((A, B), 2.3%), ((A, C), 4%), ... , (A, B, C, D), 1.01%)]
+\section{Provide the found frequent itemsets containing two or more items together with their computed support value.}
+
+\includegraphics[scale=1.5]{ex3.png}
   
 
 \end{document}
