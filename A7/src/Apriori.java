@@ -79,7 +79,7 @@ public class Apriori {
 
                 Candidate newcand = generateCItemset(ci, cj);
 
-                if (newcand != null) {
+                if (newcand != null && !prune(newcand, lastCandidates)) {
                     newCandidates.add(newcand);
                 }
             }
@@ -88,8 +88,21 @@ public class Apriori {
         return newCandidates;
     }
 
-    private Candidate generateCItemset(Candidate ci, Candidate cj) {
+    private boolean prune(Candidate newcand, List<Candidate> lastCandidates) {
+        for(int i = 0; i < newcand.getArticles().size(); i++)
+        {
+            List<Integer> subset = new ArrayList<>(newcand.getArticles());
+            subset.remove(i);
 
+            if(!lastCandidates.contains(new Candidate(subset)))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Candidate generateCItemset(Candidate ci, Candidate cj) {
         List<Integer> iArts = ci.getArticles();
         List<Integer> jArts = cj.getArticles();
 
@@ -100,13 +113,14 @@ public class Apriori {
                 return null;
             }
         }
-        if(iArts.get(iArts.size()-1) >= jArts.get(iArts.size()-1))
+        int lastindex = iArts.size()-1;
+        if(iArts.get(lastindex) >= jArts.get(lastindex))
         {
             return null;
         }
         else
         {
-            return new Candidate(ci, jArts.get(iArts.size()-1));
+            return new Candidate(ci, jArts.get(lastindex));
         }
     }
 
